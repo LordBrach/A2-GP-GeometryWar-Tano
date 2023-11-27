@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
+#include "Player.h"
 
 constexpr float cubeSpeed = 500.f;
 
@@ -8,9 +9,12 @@ int main()
 {
 	// Initialisation
 
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "Geometry Wars");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishi");
 	window.setVerticalSyncEnabled(true);
-
+	Player joueur;
+	sf::RectangleShape Player;
+	Player = joueur.CreatePlayer(Player);
+	Player = joueur.PositionPlayer(Player);
 	// Début de la boucle de jeu
 	sf::RectangleShape rectangle;
 	rectangle.setFillColor(sf::Color::Red);
@@ -57,14 +61,14 @@ int main()
 			pos.y = pos.y + deltaTime * cubeSpeed;
 
 		rectangle.setPosition(pos);
-
 		// Affichage
 		
 		// Remise au noir de toute la fenêtre
 		window.clear();
-
+		
 		// Tout le rendu va se dérouler ici
 		window.draw(rectangle);
+		window.draw(Player);
 
 		// On présente la fenêtre sur l'écran
 		window.display();
