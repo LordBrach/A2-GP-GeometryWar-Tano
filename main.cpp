@@ -1,22 +1,28 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "Wall.h"
 #include <iostream>
 
-constexpr float cubeSpeed = 500.f;
+
 
 int main()
 {
 	// Initialisation
 
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "Geometry Wars");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	window.setVerticalSyncEnabled(true);
-
+	Base base;
 	// Début de la boucle de jeu
 	sf::RectangleShape rectangle;
-	rectangle.setFillColor(sf::Color::Red);
-	rectangle.setPosition(640, 360);
-	rectangle.setSize(sf::Vector2f(128, 128));
-
+	sf::RectangleShape rectangle2;
+	sf::RectangleShape rectangle3;
+	sf::RectangleShape rectangle4;
+	Wall mur(500.f);
+	rectangle = mur.create(rectangle,base.base0);
+	rectangle2 = mur.create(rectangle2,base.base1);
+	rectangle3 = mur.create(rectangle3,base.base2);
+	rectangle4 = mur.create(rectangle4,base.base3);
+	const float cubeSpeed = mur.GetSpeed();
 	sf::Clock frameClock;
 
 	while (window.isOpen())
@@ -28,13 +34,13 @@ int main()
 			// On gère l'événément
 			switch (event.type)
 			{
-				case sf::Event::Closed:
-					// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-					window.close();
-					break;
+			case sf::Event::Closed:
+				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+				window.close();
+				break;
 
-				default:
-					break;
+			default:
+				break;
 			}
 		}
 
@@ -43,28 +49,21 @@ int main()
 
 		// Logique
 		sf::Vector2f pos = rectangle.getPosition();
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-			pos.x = pos.x - deltaTime * cubeSpeed;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			pos.x = pos.x + deltaTime * cubeSpeed;
+		//pos.x = pos.x - deltaTime * cubeSpeed;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-			pos.y = pos.y - deltaTime * cubeSpeed;
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			pos.y = pos.y + deltaTime * cubeSpeed;
-
-		rectangle.setPosition(pos);
+		//rectangle.setPosition(pos);
 
 		// Affichage
-		
+
 		// Remise au noir de toute la fenêtre
 		window.clear();
 
 		// Tout le rendu va se dérouler ici
 		window.draw(rectangle);
+		window.draw(rectangle2);
+		window.draw(rectangle3);
+		window.draw(rectangle4);
 
 		// On présente la fenêtre sur l'écran
 		window.display();
