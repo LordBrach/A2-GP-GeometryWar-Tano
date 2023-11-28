@@ -18,9 +18,16 @@ sf::RectangleShape Player::CreatePlayer(sf::RectangleShape Player)
 
 sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player)
 {
+	sf::Window window;
+	sf::Event event;
+	std::vector<sf::Vector2f> listVecteur;
+	listVecteur.push_back(sf::Vector2f(300.0f, 180.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 360.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 540.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 620.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 800.0f - 64));
 	while (window.pollEvent(event))
 	{
-		// check the type of the event...
 		switch (event.type)
 		{
 			// window closed
@@ -30,31 +37,24 @@ sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player)
 
 			// key pressed
 		case sf::Event::KeyPressed:
-			...
+			if (event.key.code == sf::Keyboard::Z && index >= 1)
+			{
+				index--;
+			}
+			else if (event.key.code == sf::Keyboard::S && index <= 3)
+			{
+				index++;
+			}
+			Player.setPosition(listVecteur[index]);
 				break;
-
-			// we don't process other types of events
 		default:
 			break;
 		}
+		return Player;
 	}
-	std::vector<sf::Vector2f> listVecteur;
-	listVecteur.push_back(sf::Vector2f(300.0f, 180.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 360.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 540.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 620.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 800.0f - 64));
+	
 
-	if ( && index <= 3)
-	{
-		
-		index++;
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && index >= 1)
-	{
-		index--;
-	}
-	Player.setPosition(listVecteur[index]);
-	return Player;
+	
+	
 	
 }
