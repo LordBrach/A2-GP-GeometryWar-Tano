@@ -12,14 +12,12 @@ sf::RectangleShape Wall::create(sf::Vector2f vec)
 	sf::RectangleShape rectangle;
 	rectangle.setFillColor(sf::Color::Blue);
 	rectangle.setPosition(m_position);
-	rectangle.setSize(sf::Vector2f(256, 1080/5));
+	rectangle.setSize(sf::Vector2f(128,128));
 	return rectangle;
 }
 
-sf::Vector2f Wall::setPosition()
+sf::Vector2f Wall::setPosition(Position pos)
 {
-	Position pos;;
-	pos = Position::position1;
 	Base base;
 	switch (pos)
 	{
@@ -43,8 +41,8 @@ sf::Vector2f Wall::setPosition()
 	}
 }
 
-void Wall::draw(sf::RenderWindow& window)
+void Wall::draw(sf::RenderWindow& window,Position pos)
 {
-	window.draw(create(setPosition()));
+	window.draw(create(setPosition(pos)));
 }
 

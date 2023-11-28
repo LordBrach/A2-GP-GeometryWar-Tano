@@ -9,23 +9,20 @@
 int main()
 {
 	// Initialisation
-
-
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	window.setVerticalSyncEnabled(true);
 	Base base;
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishi");
-	window.setVerticalSyncEnabled(true);
 	Player joueur;
+	Position position;
 	sf::RectangleShape Player;
 	Player = joueur.CreatePlayer(Player);
 	int index = 2;
 	// Début de la boucle de jeu
 	sf::RectangleShape rectangle;
-	Wall mur(500.f);
+	Wall mur(300.f);
 	const float cubeSpeed = mur.GetSpeed();
 	sf::Clock frameClock;
-
+	sf::Vector2f pos = rectangle.getPosition();
 	while (window.isOpen())
 	{
 		// Gérer les événéments survenus depuis le dernier tour de boucle
@@ -84,9 +81,13 @@ int main()
 
 		// Tout le rendu va se dérouler ici
 
-		mur.draw(window);
+		mur.draw(window,Position::position1);
+		mur.draw(window,Position::position2);
+		mur.draw(window,Position::position3);
+		mur.draw(window,Position::position4);
+		mur.draw(window,Position::position5);
 
-		window.draw(rectangle);
+		//window.draw(rectangle);
 		window.draw(Player);
 
 		// On présente la fenêtre sur l'écran

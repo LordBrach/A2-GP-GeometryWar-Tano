@@ -15,11 +15,11 @@ struct Base
 {
 	const float tailleY = 1080.f;
 	const float Xposition = 1700.f;
-	sf::Vector2f base1 = sf::Vector2f(Xposition, 0);
-	sf::Vector2f base2 = sf::Vector2f(Xposition, tailleY / 4.f);
-	sf::Vector2f base3 = sf::Vector2f(Xposition, tailleY / 2.f);
-	sf::Vector2f base4 = sf::Vector2f(Xposition, tailleY - 256);
-	sf::Vector2f base5 = sf::Vector2f(tailleY / 1.f, Xposition);
+	sf::Vector2f base1 = sf::Vector2f(Xposition, 180.0f - 64);
+	sf::Vector2f base2 = sf::Vector2f(Xposition, 360.0f - 64);
+	sf::Vector2f base3 = sf::Vector2f(Xposition, 540.0f - 64);
+	sf::Vector2f base4 = sf::Vector2f(Xposition, 720.0f - 64);
+	sf::Vector2f base5 = sf::Vector2f(Xposition, 900.0f - 64);
 
 };
 class Wall
@@ -27,8 +27,8 @@ class Wall
 public:
 	Wall(float speed);
 	sf::RectangleShape create(sf::Vector2f vec);
-	sf::Vector2f setPosition();
-	void draw(sf::RenderWindow &window);
+	sf::Vector2f setPosition(Position pos);
+	void draw(sf::RenderWindow &window, Position pos);
 	float GetSpeed() const
 	{
 		return m_speed;
