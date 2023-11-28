@@ -3,19 +3,21 @@
 #include "Wall.h"
 #include <iostream>
 #include "Player.h"
-
+#include "WallHandler.h"
+#include <filesystem>
 
 
 int main()
 {
 	// Initialisation
-
+	//testing wall handler
+	WallHandler* wallHandlingLevel0 = new WallHandler(3.0f, ("../LevelData/Level1.txt"));
+	std::cout << "RESET" << std::endl;
+	wallHandlingLevel0->Reset(0.5f, ("../LevelData/Level0.txt"));
 
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	window.setVerticalSyncEnabled(true);
 	Base base;
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishi");
-	window.setVerticalSyncEnabled(true);
 	Player joueur;
 	sf::RectangleShape Player;
 	Player = joueur.CreatePlayer(Player);
@@ -35,32 +37,10 @@ int main()
 			// On gère l'événément
 			switch (event.type)
 			{
-<<<<<<< HEAD:mainG.cpp
 			case sf::Event::Closed:
 				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
 				window.close();
 				break;
-			case sf::Event::KeyPressed:
-				if (event.key.code == sf::Keyboard::Z)
-				{
-					Player = joueur.PositionPlayer(Player, "Top", index);
-				}
-				else if (event.key.code == sf::Keyboard::S)
-				{
-					Player = joueur.PositionPlayer(Player, "Down", index);
-				}
-
-				break;
-				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-				window.close();
-				break;
-			default:
-				break;
-=======
-				case sf::Event::Closed:
-					// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-					window.close();
-					break;
 				/*case sf::Event::KeyPressed:
 					if (event.key.code == sf::Keyboard::Z)
 					{
@@ -72,39 +52,38 @@ int main()
 					}
 					break;
 				*/
-				case sf::Event::KeyPressed:
-					if (event.key.code == sf::Keyboard::A)
-					{
-						Player = joueur.PositionPlayer(Player,0);
-					}
-					else if (event.key.code == sf::Keyboard::Z)
-					{
-						Player = joueur.PositionPlayer(Player, 1);
-					}
-					else if (event.key.code == sf::Keyboard::E)
-					{
-						Player = joueur.PositionPlayer(Player, 2);
-					}
-					else if (event.key.code == sf::Keyboard::R)
-					{
-						Player = joueur.PositionPlayer(Player, 3);
-					}
-					else if (event.key.code == sf::Keyboard::Space)
-					{
-						Player = joueur.PositionPlayer(Player, 4);
-					}
-					break;
-					// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-					window.close();
-					break;
-				default:
-					break;
->>>>>>> LucLenne:main.cpp
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::A)
+				{
+					Player = joueur.PositionPlayer(Player, 0);
+				}
+				else if (event.key.code == sf::Keyboard::Z)
+				{
+					Player = joueur.PositionPlayer(Player, 1);
+				}
+				else if (event.key.code == sf::Keyboard::E)
+				{
+					Player = joueur.PositionPlayer(Player, 2);
+				}
+				else if (event.key.code == sf::Keyboard::R)
+				{
+					Player = joueur.PositionPlayer(Player, 3);
+				}
+				else if (event.key.code == sf::Keyboard::Space)
+				{
+					Player = joueur.PositionPlayer(Player, 4);
+				}
+				break;
+				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+				window.close();
+				break;
+			default:
+				break;
 			}
 		}
-
+		wallHandlingLevel0->CheckClock();
 		float deltaTime = frameClock.restart().asSeconds();
-		std::cout << 1.f / deltaTime << " FPS" << std::endl;
+		//std::cout << 1.f / deltaTime << " FPS" << std::endl;
 
 		// Logique
 
@@ -115,13 +94,13 @@ int main()
 		//rectangle.setPosition(pos);
 
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 			pos.y = pos.y - deltaTime * cubeSpeed;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			pos.y = pos.y + deltaTime * cubeSpeed;
 
-		rectangle.setPosition(pos);
+		rectangle.setPosition(pos); */
 		// Affichage
 
 		// Remise au noir de toute la fenêtre
