@@ -17,7 +17,7 @@ sf::RectangleShape Player::CreatePlayer(sf::RectangleShape Player)
 	return Player;
 }
 
-sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player,std::string orientation,int &index)
+/*sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player, std::string orientation, int& index)
 {
 	
 	std::vector<sf::Vector2f> listVecteur;
@@ -34,6 +34,19 @@ sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player,std::string 
 	{
 		index++;
 	}
+	Player.setPosition(listVecteur[index]);
+	return Player;
+}
+*/
+sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player, int index)
+{
+
+	std::vector<sf::Vector2f> listVecteur;
+	listVecteur.push_back(sf::Vector2f(300.0f, 180.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 360.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 540.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 720.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 900.0f - 64));
 	Player.setPosition(listVecteur[index]);
 	return Player;
 }
