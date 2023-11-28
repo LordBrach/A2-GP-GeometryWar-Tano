@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <SFML/Window.hpp>
 
+
 void Player::Draw(sf::RenderWindow& window)
 {
 	
@@ -16,45 +17,23 @@ sf::RectangleShape Player::CreatePlayer(sf::RectangleShape Player)
 	return Player;
 }
 
-sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player)
+sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player,std::string orientation,int &index)
 {
-	sf::Window window;
-	sf::Event event;
+	
 	std::vector<sf::Vector2f> listVecteur;
 	listVecteur.push_back(sf::Vector2f(300.0f, 180.0f - 64));
 	listVecteur.push_back(sf::Vector2f(300.0f, 360.0f - 64));
 	listVecteur.push_back(sf::Vector2f(300.0f, 540.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 620.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 800.0f - 64));
-	while (window.pollEvent(event))
+	listVecteur.push_back(sf::Vector2f(300.0f, 720.0f - 64));
+	listVecteur.push_back(sf::Vector2f(300.0f, 900.0f - 64));
+	if (orientation == "Top" && index>0) 
 	{
-		switch (event.type)
-		{
-			// window closed
-		case sf::Event::Closed:
-			window.close();
-			break;
-
-			// key pressed
-		case sf::Event::KeyPressed:
-			if (event.key.code == sf::Keyboard::Z && index >= 1)
-			{
-				index--;
-			}
-			else if (event.key.code == sf::Keyboard::S && index <= 3)
-			{
-				index++;
-			}
-			Player.setPosition(listVecteur[index]);
-				break;
-		default:
-			break;
-		}
-		return Player;
+		index--;
 	}
-	
-
-	
-	
-	
+	else if (orientation == "Down" && index < 4)
+	{
+		index++;
+	}
+	Player.setPosition(listVecteur[index]);
+	return Player;
 }

@@ -14,7 +14,7 @@ int main()
 	Player joueur;
 	sf::RectangleShape Player;
 	Player = joueur.CreatePlayer(Player);
-	Player = joueur.PositionPlayer(Player);
+	int index = 2;
 	// Début de la boucle de jeu
 	sf::RectangleShape rectangle;
 	rectangle.setFillColor(sf::Color::Red);
@@ -36,7 +36,20 @@ int main()
 					// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
 					window.close();
 					break;
-
+				case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Z)
+					{
+						Player = joueur.PositionPlayer(Player,"Top",index);
+					}
+					else if (event.key.code == sf::Keyboard::S)
+					{
+						Player = joueur.PositionPlayer(Player,"Down",index);
+					}
+					
+					break;
+					// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+					window.close();
+					break;
 				default:
 					break;
 			}

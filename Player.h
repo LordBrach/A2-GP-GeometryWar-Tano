@@ -10,5 +10,5 @@ public:
 	void Draw(sf::RenderWindow& window);
 	int index = 2;
 	sf::RectangleShape CreatePlayer(sf::RectangleShape Player);
-	sf::RectangleShape PositionPlayer(sf::RectangleShape Player);
+	sf::RectangleShape PositionPlayer(sf::RectangleShape Player,std::string orientation,int &index);
 };
