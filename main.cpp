@@ -14,14 +14,7 @@ int main()
 	Base base;
 	// Début de la boucle de jeu
 	sf::RectangleShape rectangle;
-	sf::RectangleShape rectangle2;
-	sf::RectangleShape rectangle3;
-	sf::RectangleShape rectangle4;
 	Wall mur(500.f);
-	rectangle = mur.create(rectangle,base.base0);
-	rectangle2 = mur.create(rectangle2,base.base1);
-	rectangle3 = mur.create(rectangle3,base.base2);
-	rectangle4 = mur.create(rectangle4,base.base3);
 	const float cubeSpeed = mur.GetSpeed();
 	sf::Clock frameClock;
 
@@ -60,10 +53,7 @@ int main()
 		window.clear();
 
 		// Tout le rendu va se dérouler ici
-		window.draw(rectangle);
-		window.draw(rectangle2);
-		window.draw(rectangle3);
-		window.draw(rectangle4);
+		mur.draw(window);
 
 		// On présente la fenêtre sur l'écran
 		window.display();
