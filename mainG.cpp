@@ -35,6 +35,7 @@ int main()
 			// On gère l'événément
 			switch (event.type)
 			{
+<<<<<<< HEAD:mainG.cpp
 			case sf::Event::Closed:
 				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
 				window.close();
@@ -55,6 +56,50 @@ int main()
 				break;
 			default:
 				break;
+=======
+				case sf::Event::Closed:
+					// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+					window.close();
+					break;
+				/*case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Z)
+					{
+						Player = joueur.PositionPlayer(Player,"Top",index);
+					}
+					else if (event.key.code == sf::Keyboard::S)
+					{
+						Player = joueur.PositionPlayer(Player,"Down",index);
+					}
+					break;
+				*/
+				case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::A)
+					{
+						Player = joueur.PositionPlayer(Player,0);
+					}
+					else if (event.key.code == sf::Keyboard::Z)
+					{
+						Player = joueur.PositionPlayer(Player, 1);
+					}
+					else if (event.key.code == sf::Keyboard::E)
+					{
+						Player = joueur.PositionPlayer(Player, 2);
+					}
+					else if (event.key.code == sf::Keyboard::R)
+					{
+						Player = joueur.PositionPlayer(Player, 3);
+					}
+					else if (event.key.code == sf::Keyboard::Space)
+					{
+						Player = joueur.PositionPlayer(Player, 4);
+					}
+					break;
+					// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+					window.close();
+					break;
+				default:
+					break;
+>>>>>>> LucLenne:main.cpp
 			}
 		}
 
