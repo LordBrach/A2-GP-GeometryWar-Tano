@@ -22,7 +22,7 @@ public:
 	// restart WallHandler Clock and checks if the delay is reached
 	void CheckClock();
 	// Draw walls contained in array
-	void DrawWalls(sf::RenderWindow&window);
+	void DrawWalls(sf::RenderWindow&window, float* deltatime);
 private:
 	// is WallSpawning active ?
 	bool isWallSpawning = true;

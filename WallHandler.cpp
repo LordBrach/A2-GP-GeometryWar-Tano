@@ -70,31 +70,36 @@ void WallHandler::Reset(float newDelay, std::string newLevelFilePath)
 void WallHandler::SpawnWalls()
 {
 	std::cout << "SPAWNING WALLS:" << _currentWall << std::endl;
+	Position positions;
 	if (_currentWall < _vectorWallPatterns.size() - 1) {
-		_currentWall += 1;
 		// here do the spawning
-
+		std::cout << _currentWall << std::endl;
 		// want to access first element in _vectorWallPatterns
 		// want to create 5 walls based on the bools in there
-		// these walls are stored in _arrayWalls
 		for (int i = 0; i < _vectorWallPatterns.begin()[0].size(); i++)
 		{
-			if (_vectorWallPatterns.begin()[0][i] == true) {
-				_arrayWalls[_currentWall][i] = new Wall(_wallSpeed);
+			_arrayWalls.emplace_back();
+			if (_vectorWallPatterns[_currentWall][i] == true) {
+				// Set position to according value
+				positions = static_cast<Position>(i);
+				std::cout << "instanciating a wall in position: " << positions << std::endl;
+
+				// store new wall in _arrayWalls
+				_arrayWalls[_currentWall][i] = new Wall(positions, _wallSpeed, _wallSize);
+				std::cout << "added wall to array" << std::endl;
+			}
+			else {
+				_arrayWalls[_currentWall][i] = nullptr;
+
 			}
 		}
-		// pop first element in _vectorWallPatterns
-		_vectorWallPatterns.erase(_vectorWallPatterns.begin());
 		// TODO make it so that the new walls stored in _arrayWalls disappear after 5 seconds
 
 
 		// you need to handle the drawing of walls, they move by themselves though
 
-
-
-
-	}
-	else {
+		_currentWall += 1;
+	} else {
 		std::cout << "REACHED END" << std::endl;
 		this->isWallSpawning = false;
 	}
@@ -114,13 +119,28 @@ void WallHandler::CheckClock()
 	}
 }
 
-void WallHandler::DrawWalls(sf::RenderWindow &window)
+void WallHandler::DrawWalls(sf::RenderWindow &window, float* deltatime)
 {
 	for (int i = 0; i < _arrayWalls.size(); i++)
 	{
-		for (int j = 0; i < _arrayWalls[i].size(); j++)
+		for (int j = 0; j < _arrayWalls[i].size(); j++)
 		{
-			//_arrayWalls[i][j]->draw(window, _arrayWalls[i][j]);
+			if (_arrayWalls[i][j] != nullptr)
+			{
+				_arrayWalls[i][j]->draw(window);
+				_arrayWalls[i][j]->slide(deltatime);
+
+				//If OOB, Destroy a line of walls
+				if (_arrayWalls[i][j]->getPosition().x <= -100) {
+					for (int k = 0; k < _arrayWalls[i].size(); k++)
+					{
+						//std::cout << "Destroying walls" << std::endl;
+						delete(_arrayWalls[i][k]);
+					}
+					_arrayWalls.erase(_arrayWalls.begin() + i);
+					return;
+				}
+			}
 		}
 	}
 }
