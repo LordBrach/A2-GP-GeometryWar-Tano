@@ -3,6 +3,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
+#include "Player.h"
 enum class Position
 {
 	position1,
@@ -40,6 +41,7 @@ public:
 	{
 		return m_position;
 	}
+	void checkCollision(Player joueur);
 
 private:
 	float m_speed;

@@ -66,3 +66,22 @@ void Wall::slide(float* deltatime)
 
 }
 
+void Wall::checkCollision(Player joueur)
+{
+	float playerX;
+	float wallX;
+	float playerY;
+	float wallY;
+	playerX = joueur.getPosition().x;
+	wallX = m_position.x;
+	playerY = joueur.getPosition().y;
+	wallY = m_position.y;
+
+
+	if (wallX <= playerX + 64 && wallX >= playerX - 64 && wallY <= playerY + 64 && wallY >= playerY - 64)
+	{
+		joueur.m_isAlive = false;
+		std::cout << "Player is dead" << std::endl;
+	}
+}
+
