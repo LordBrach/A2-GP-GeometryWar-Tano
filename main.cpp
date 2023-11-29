@@ -23,7 +23,7 @@ int main()
 	Player = joueur.CreatePlayer(Player);
 	int index = 2;
 	// Début de la boucle de jeu
-	sf::RectangleShape rectangle;
+	//sf::RectangleShape rectangle;
 	Wall mur(500.f);
 	const float cubeSpeed = mur.GetSpeed();
 	sf::Clock frameClock;
@@ -110,7 +110,7 @@ int main()
 
 		mur.draw(window);
 
-		window.draw(rectangle);
+		//window.draw(rectangle);
 		window.draw(Player);
 
 		// On présente la fenêtre sur l'écran
