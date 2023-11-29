@@ -3,6 +3,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
+#include "Player.h"
 enum class Position
 {
 	position1,
@@ -30,7 +31,7 @@ public:
 	Wall(Position slot, float speed, int size);
 	void setParameter();
 	sf::Vector2f setPosition(Position pos);
-	void draw(sf::RenderWindow &window, Wall wall);
+	void draw(sf::RenderWindow &window);
 	void slide(float* deltatime);
 	float getSpeed() const
 	{
@@ -40,6 +41,7 @@ public:
 	{
 		return m_position;
 	}
+	void checkCollision(Player joueur);
 
 private:
 	float m_speed;

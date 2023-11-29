@@ -54,9 +54,9 @@ sf::Vector2f Wall::setPosition(Position pos)
 	return base.base1;
 }
 
-void Wall::draw(sf::RenderWindow& window, Wall wall)
+void Wall::draw(sf::RenderWindow& window)
 {
-	window.draw(wall.m_shape);
+	window.draw(m_shape);
 }
 
 void Wall::slide(float* deltatime)
@@ -64,5 +64,24 @@ void Wall::slide(float* deltatime)
 	m_position.x = m_position.x - m_speed * (*deltatime);
 	m_shape.setPosition(m_position);
 
+}
+
+void Wall::checkCollision(Player joueur)
+{
+	float playerX;
+	float wallX;
+	float playerY;
+	float wallY;
+	playerX = joueur.getPosition().x;
+	wallX = m_position.x;
+	playerY = joueur.getPosition().y;
+	wallY = m_position.y;
+
+
+	if (wallX <= playerX + 64 && wallX >= playerX - 64 && wallY <= playerY + 64 && wallY >= playerY - 64)
+	{
+		joueur.m_isAlive = false;
+		std::cout << "Player is dead" << std::endl;
+	}
 }
 
