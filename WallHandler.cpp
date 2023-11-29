@@ -50,6 +50,7 @@ void WallHandler::ParseLvlData()
 			_vectorWallPatterns.push_back(convertLine(levelLine));
 			//std::cout << levelLine << std::endl;
 		}
+		MyFile.close();
 	}
 	else {
 		std::cout << "Couldnt open level file" << std::endl;
@@ -82,10 +83,12 @@ void WallHandler::SpawnWalls()
 			if (_vectorWallPatterns[_currentWall][i] == true) {
 				// Set position to according value
 				positions = static_cast<Position>(i);
-				std::cout << "instanciating a wall in position: " << positions << std::endl;
+				//std::cout << "instanciating a wall in position: " << positions->x << std::endl;
 
 				// store new wall in _arrayWalls
 				_arrayWalls[_currentWall][i] = new Wall(positions, _wallSpeed, _wallSize);
+				_arrayWalls[_currentWall][i]->setPosition(positions);
+
 				std::cout << "added wall to array" << std::endl;
 			}
 			else {
@@ -119,7 +122,32 @@ void WallHandler::CheckClock()
 	}
 }
 
-void WallHandler::DrawWalls(sf::RenderWindow &window, float* deltatime)
+
+void WallHandler::DestroyOOBWalls()
+{
+	//If OOB, Destroy a line of walls
+	for (int i = 0; i < _arrayWalls.size(); i++)
+	{
+		for (int j = 0; j < _arrayWalls[i].size(); j++)
+		{
+			if (_arrayWalls[i][j] != nullptr)
+			{
+				if (_arrayWalls[i][j]->getPosition().x <= -300)
+				{
+					for (int k = 0; k < _arrayWalls[i].size(); k++)
+					{
+						std::cout << "Destroying walls" << std::endl;
+						delete(_arrayWalls[i][k]);
+					}
+					_arrayWalls.erase(_arrayWalls.begin() + i);
+					return;
+					}
+			}
+		}
+	}
+}
+
+void WallHandler::DrawWalls(sf::RenderWindow& window, float* deltatime)
 {
 	for (int i = 0; i < _arrayWalls.size(); i++)
 	{
@@ -129,18 +157,8 @@ void WallHandler::DrawWalls(sf::RenderWindow &window, float* deltatime)
 			{
 				_arrayWalls[i][j]->draw(window);
 				_arrayWalls[i][j]->slide(deltatime);
-
-				//If OOB, Destroy a line of walls
-				if (_arrayWalls[i][j]->getPosition().x <= -100) {
-					for (int k = 0; k < _arrayWalls[i].size(); k++)
-					{
-						//std::cout << "Destroying walls" << std::endl;
-						delete(_arrayWalls[i][k]);
-					}
-					_arrayWalls.erase(_arrayWalls.begin() + i);
-					return;
-				}
 			}
 		}
 	}
+	DestroyOOBWalls();
 }

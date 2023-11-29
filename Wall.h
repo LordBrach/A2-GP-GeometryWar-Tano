@@ -16,12 +16,12 @@ enum class Position
 struct Base
 {
 	const float tailleY = 1080.f;
-	const float Xposition = 1700.f;
-	sf::Vector2f base1 = sf::Vector2f(Xposition, 180.0f - 64);
-	sf::Vector2f base2 = sf::Vector2f(Xposition, 360.0f - 64);
-	sf::Vector2f base3 = sf::Vector2f(Xposition, 540.0f - 64);
-	sf::Vector2f base4 = sf::Vector2f(Xposition, 720.0f - 64);
-	sf::Vector2f base5 = sf::Vector2f(Xposition, 900.0f - 64);
+	const float Xposition = 2000.f;
+	sf::Vector2f base1 = sf::Vector2f(Xposition, 1080.f * 0.f);
+	sf::Vector2f base2 = sf::Vector2f(Xposition, 1080.f * 0.2f);
+	sf::Vector2f base3 = sf::Vector2f(Xposition, 1080.f * 0.4f);
+	sf::Vector2f base4 = sf::Vector2f(Xposition, 1080.f * 0.6f);
+	sf::Vector2f base5 = sf::Vector2f(Xposition, 1080.f * 0.8f);
 
 };
 class Wall
@@ -30,7 +30,7 @@ public:
 	Wall(float speed, Position position);
 	Wall(Position slot, float speed, int size);
 	void setParameter();
-	sf::Vector2f setPosition(Position pos);
+	void setPosition(Position pos);
 	void draw(sf::RenderWindow &window);
 	void slide(float* deltatime);
 	float getSpeed() const

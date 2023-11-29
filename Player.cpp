@@ -18,23 +18,23 @@ sf::Vector2f Player::PositionPlayer(Player player, sf::Event inputEvent)
 {
 	if (inputEvent.key.code == sf::Keyboard::A) 
 	{
-		m_position=sf::Vector2f(300.0f, 180.0f - 64);
+		m_position=sf::Vector2f(300.0f, 1080.f * 0.05f);
 	}
 	else if (inputEvent.key.code == sf::Keyboard::Z) 
 	{
-		m_position = sf::Vector2f(300.0f, 360.0f - 64);
+		m_position = sf::Vector2f(300.0f, 1080.f * 0.25f);
 	}
 	else if (inputEvent.key.code == sf::Keyboard::E)
 	{
-		m_position = sf::Vector2f(300.0f, 540.0f - 64);
+		m_position = sf::Vector2f(300.0f, 1080.f * 0.45f);
 	}
 	else if (inputEvent.key.code == sf::Keyboard::R)
 	{
-		m_position = sf::Vector2f(300.0f, 720.0f - 64);
+		m_position = sf::Vector2f(300.0f, 1080.f * 0.65f);
 	}
 	else if (inputEvent.key.code == sf::Keyboard::Space)
 	{
-		m_position = sf::Vector2f(300.0f, 900.0f - 64);
+		m_position = sf::Vector2f(300.0f, 1080.f * 0.85f);
 	}
 	m_shape.setPosition(m_position);
 	return m_position;

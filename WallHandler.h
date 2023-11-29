@@ -23,6 +23,8 @@ public:
 	void CheckClock();
 	// Draw walls contained in array
 	void DrawWalls(sf::RenderWindow&window, float* deltatime);
+	// Destroy Walls
+	void DestroyOOBWalls();
 private:
 	// is WallSpawning active ?
 	bool isWallSpawning = true;

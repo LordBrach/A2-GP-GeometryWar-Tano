@@ -6,7 +6,7 @@ Wall::Wall(float speed, Position position)
 	m_speed = speed;
 	m_color = sf::Color::Blue;
 	m_size = sf::Vector2f(128, 128);
-	m_position = setPosition(position);
+	setPosition(position);
 	setParameter();
 }
 
@@ -14,7 +14,7 @@ Wall::Wall(Position slot, float speed, int size)
 {
 	m_size = sf::Vector2f(size, size);
 	m_speed = speed;
-	m_position = setPosition(slot);
+	setPosition(slot);
 	m_color = sf::Color::Red;
 	setParameter();
 }
@@ -28,31 +28,32 @@ void Wall::setParameter()
 
 
 
-sf::Vector2f Wall::setPosition(Position pos)
+void Wall::setPosition(Position pos)
 {
 	Base base;
 	switch (pos)
 	{
 	case Position::position1:
-		return base.base1;
+		m_position = base.base1;
 		break;
 	case Position::position2:
-		return base.base2;
+		m_position = base.base2;
 		break;
 	case Position::position3:
-		return base.base3;
+		m_position = base.base3;
 		break;
 	case Position::position4:
-		return base.base4;
+		m_position = base.base4;
 		break;
 	case Position::position5:
-		return base.base5;
+		m_position = base.base5;
 		break;
 	default:
 		break;
 	}
-	return base.base1;
+	m_shape.setPosition(m_position);
 }
+
 
 void Wall::draw(sf::RenderWindow& window)
 {
@@ -63,6 +64,7 @@ void Wall::slide(float* deltatime)
 {
 	m_position.x = m_position.x - m_speed * (*deltatime);
 	m_shape.setPosition(m_position);
+	std::cout << m_position.x << ", " << m_position.y << std::endl;
 
 }
 

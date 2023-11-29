@@ -13,7 +13,7 @@ int main()
 	//testing wall handler
 	WallHandler* wallHandlingLevel0 = new WallHandler(3.0f, ("../LevelData/Level1.txt"));
 	std::cout << "RESET" << std::endl;
-	wallHandlingLevel0->Reset(0.5f, ("../LevelData/Level0.txt"));
+	wallHandlingLevel0->Reset(0.5f, ("../LevelData/Level2.txt"));
 
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	window.setVerticalSyncEnabled(true);
@@ -22,11 +22,11 @@ int main()
 	int index = 2;
 	// Début de la boucle de jeu
 	//sf::RectangleShape rectangle;
-	Wall mur(500.f, Position::position1);
+	/*Wall mur(500.f, Position::position1);
 	Wall mur1(500.f, Position::position2);
 	Wall mur2(500.f, Position::position3);
 	Wall mur3(Position::position4, 500.0f, 256);
-	const float cubeSpeed = mur.getSpeed();
+	const float cubeSpeed = mur.getSpeed();*/
 	// Début de la boucle de jeu
 	//sf::RectangleShape rectangle;
 	//const float cubeSpeed = mur.GetSpeed();
@@ -57,6 +57,8 @@ int main()
 		}
 		wallHandlingLevel0->CheckClock();
 		float deltaTime = frameClock.restart().asSeconds();
+		window.clear();
+		wallHandlingLevel0->DrawWalls(window, &deltaTime);
 		//std::cout << 1.f / deltaTime << " FPS" << std::endl;
 
 		// Logique
@@ -78,11 +80,10 @@ int main()
 		// Affichage
 		
 		// Remise au noir de toute la fenêtre
-		window.clear();
 
 		// Tout le rendu va se dérouler ici
 		window.draw(joueur.getRectangle());
-		mur.draw(window);
+		/*
 		mur1.draw(window);
 		mur2.draw(window);
 		mur3.draw(window);
@@ -90,7 +91,8 @@ int main()
 		mur1.slide(&deltaTime);
 		mur2.slide(&deltaTime);
 		mur3.slide(&deltaTime);
-		mur.checkCollision(joueur);
+		mur.draw(window); */
+		//mur.checkCollision(joueur);
 		//window.draw(rectangle);
 		
 		// On présente la fenêtre sur l'écran
