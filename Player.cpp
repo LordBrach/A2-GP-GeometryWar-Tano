@@ -39,3 +39,5 @@ sf::Vector2f Player::PositionPlayer(Player player, sf::Event inputEvent)
 	m_shape.setPosition(m_position);
 	return m_position;
 }
+
+
