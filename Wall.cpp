@@ -54,9 +54,9 @@ sf::Vector2f Wall::setPosition(Position pos)
 	return base.base1;
 }
 
-void Wall::draw(sf::RenderWindow& window, Wall wall)
+void Wall::draw(sf::RenderWindow& window)
 {
-	window.draw(wall.m_shape);
+	window.draw(m_shape);
 }
 
 void Wall::slide(float* deltatime)

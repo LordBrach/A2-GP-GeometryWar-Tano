@@ -19,10 +19,13 @@ int main()
 	window.setVerticalSyncEnabled(true);
 	Base base;
 	Player player;
+	Wall wall1(500.f,Position::position1);
+	Wall wall2(500.f, Position::position2);
+
 	// Début de la boucle de jeu
 	//sf::RectangleShape rectangle;
-	Wall mur(500.f);
-	const float cubeSpeed = mur.GetSpeed();
+	
+	//const float cubeSpeed = mur.GetSpeed();
 	sf::Clock frameClock;
 
 	while (window.isOpen())
@@ -63,6 +66,11 @@ int main()
 
 
 		//window.draw(rectangle);
+		window.draw(player.getRectangle());
+		wall1.draw(window);
+		wall1.slide(&deltaTime);
+		wall2.draw(window);
+		wall2.slide(&deltaTime);
 		window.draw(player.getRectangle());
 
 		// On présente la fenêtre sur l'écran

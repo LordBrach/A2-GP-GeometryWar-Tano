@@ -30,7 +30,7 @@ public:
 	Wall(Position slot, float speed, int size);
 	void setParameter();
 	sf::Vector2f setPosition(Position pos);
-	void draw(sf::RenderWindow &window, Wall wall);
+	void draw(sf::RenderWindow &window);
 	void slide(float* deltatime);
 	float getSpeed() const
 	{
