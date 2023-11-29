@@ -108,7 +108,7 @@ int main()
 
 		// Tout le rendu va se dérouler ici
 
-		mur.draw(window);
+		//mur.draw(window);
 
 		//window.draw(rectangle);
 		window.draw(Player);

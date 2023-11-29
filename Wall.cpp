@@ -39,6 +39,7 @@ sf::Vector2f Wall::setPosition(Position pos)
 	default:
 		break;
 	}
+	return base.base1;
 }
 
 void Wall::draw(sf::RenderWindow& window,Position pos)
