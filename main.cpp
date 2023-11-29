@@ -18,9 +18,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	window.setVerticalSyncEnabled(true);
 	Base base;
-	Player joueur;
-	sf::RectangleShape player;
-	player = joueur.CreatePlayer(player);
+	Player player;
 	// Début de la boucle de jeu
 	//sf::RectangleShape rectangle;
 	Wall mur(500.f);
@@ -41,7 +39,7 @@ int main()
 				window.close();
 				break;
 			case sf::Event::KeyPressed:
-				player = joueur.PositionPlayer(player, event);
+				player.PositionPlayer(player, event);
 				break;
 				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
 				window.close();
@@ -65,7 +63,7 @@ int main()
 
 
 		//window.draw(rectangle);
-		window.draw(player);
+		window.draw(player.getRectangle());
 
 		// On présente la fenêtre sur l'écran
 		window.display();

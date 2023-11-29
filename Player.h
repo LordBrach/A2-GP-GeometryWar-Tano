@@ -7,9 +7,14 @@
 class Player
 {
 public:
-	void Draw(sf::RenderWindow& window);
-	int index = 2;
-	sf::RectangleShape CreatePlayer(sf::RectangleShape);
-	sf::RectangleShape PositionPlayer(sf::RectangleShape, sf::Event);
+	Player();
+	sf::Vector2f PositionPlayer(Player player, sf::Event inputEvent);
+	sf::RectangleShape getRectangle() const { return m_shape; }
 
+private :
+	bool m_isAlive;
+	sf::RectangleShape m_shape;
+	sf::Vector2f m_position;
+	sf::Vector2f m_size;
+	sf::Color m_color;
 };
