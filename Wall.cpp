@@ -3,15 +3,29 @@
 
 Wall::Wall(float speed, Position position)
 {
-	Base base;
 	m_speed = speed;
 	m_color = sf::Color::Blue;
 	m_size = sf::Vector2f(128, 128);
 	m_position = setPosition(position);
+	setParameter();
+}
+
+Wall::Wall(Position slot, float speed, int size)
+{
+	m_size = sf::Vector2f(size, size);
+	m_speed = speed;
+	m_position = setPosition(slot);
+	m_color = sf::Color::Red;
+	setParameter();
+}
+
+void Wall::setParameter()
+{
 	m_shape.setSize(m_size);
 	m_shape.setPosition(m_position);
 	m_shape.setFillColor(m_color);
 }
+
 
 
 sf::Vector2f Wall::setPosition(Position pos)
@@ -40,7 +54,7 @@ sf::Vector2f Wall::setPosition(Position pos)
 	return base.base1;
 }
 
-void Wall::draw(sf::RenderWindow& window,Wall wall)
+void Wall::draw(sf::RenderWindow& window, Wall wall)
 {
 	window.draw(wall.m_shape);
 }

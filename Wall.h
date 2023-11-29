@@ -27,6 +27,8 @@ class Wall
 {
 public:
 	Wall(float speed, Position position);
+	Wall(Position slot, float speed, int size);
+	void setParameter();
 	sf::Vector2f setPosition(Position pos);
 	void draw(sf::RenderWindow &window, Wall wall);
 	void slide(float* deltatime);

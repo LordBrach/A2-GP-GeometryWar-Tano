@@ -26,6 +26,8 @@ int main()
 	//sf::RectangleShape rectangle;
 	Wall mur(500.f, Position::position1);
 	Wall mur1(500.f, Position::position2);
+	Wall mur2(500.f, Position::position3);
+	Wall mur3(Position::position4, 500.0f, 256);
 	const float cubeSpeed = mur.getSpeed();
 	sf::Clock frameClock;
 
@@ -111,8 +113,13 @@ int main()
 
 		mur.draw(window, mur);
 		mur1.draw(window, mur1);
+		mur2.draw(window, mur2);
+		mur3.draw(window, mur3);
 		mur.slide(&deltaTime);
 		mur1.slide(&deltaTime);
+		mur2.slide(&deltaTime);
+		mur3.slide(&deltaTime);
+
 		//window.draw(rectangle);
 		window.draw(Player);
 		// On présente la fenêtre sur l'écran
