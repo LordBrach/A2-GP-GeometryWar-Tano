@@ -86,21 +86,7 @@ int main()
 		//std::cout << 1.f / deltaTime << " FPS" << std::endl;
 
 		// Logique
-
-
-		//pos.x = pos.x - deltaTime * cubeSpeed;
-
-
-		//rectangle.setPosition(pos);
-
-
-		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-			pos.y = pos.y - deltaTime * cubeSpeed;
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			pos.y = pos.y + deltaTime * cubeSpeed;
-
-		rectangle.setPosition(pos); */
+		Position pos{};
 		// Affichage
 
 		// Remise au noir de toute la fenêtre
@@ -108,7 +94,7 @@ int main()
 
 		// Tout le rendu va se dérouler ici
 
-		//mur.draw(window);
+		mur.draw(window, pos);
 
 		//window.draw(rectangle);
 		window.draw(Player);

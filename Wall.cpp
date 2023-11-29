@@ -12,7 +12,7 @@ sf::RectangleShape Wall::create(sf::Vector2f vec)
 	sf::RectangleShape rectangle;
 	rectangle.setFillColor(sf::Color::Blue);
 	rectangle.setPosition(m_position);
-	rectangle.setSize(sf::Vector2f(128,128));
+	rectangle.setSize(sf::Vector2f(256,256));
 	return rectangle;
 }
 
