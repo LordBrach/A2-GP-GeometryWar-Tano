@@ -24,8 +24,9 @@ int main()
 	int index = 2;
 	// Début de la boucle de jeu
 	//sf::RectangleShape rectangle;
-	Wall mur(500.f);
-	const float cubeSpeed = mur.GetSpeed();
+	Wall mur(500.f, Position::position1);
+	Wall mur1(500.f, Position::position2);
+	const float cubeSpeed = mur.getSpeed();
 	sf::Clock frameClock;
 
 	while (window.isOpen())
@@ -87,7 +88,7 @@ int main()
 
 		// Logique
 
-
+		//sf::Vector2f pos = mur.getPosition();
 		//pos.x = pos.x - deltaTime * cubeSpeed;
 
 
@@ -108,11 +109,12 @@ int main()
 
 		// Tout le rendu va se dérouler ici
 
-		//mur.draw(window);
-
+		mur.draw(window, mur);
+		mur1.draw(window, mur1);
+		mur.slide(&deltaTime);
+		mur1.slide(&deltaTime);
 		//window.draw(rectangle);
 		window.draw(Player);
-
 		// On présente la fenêtre sur l'écran
 		window.display();
 	}

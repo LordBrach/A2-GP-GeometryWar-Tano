@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <iostream>
 enum class Position
 {
 	position1,
@@ -25,15 +26,23 @@ struct Base
 class Wall
 {
 public:
-	Wall(float speed);
-	sf::RectangleShape create(sf::Vector2f vec);
+	Wall(float speed, Position position);
 	sf::Vector2f setPosition(Position pos);
-	void draw(sf::RenderWindow &window, Position pos);
-	float GetSpeed() const
+	void draw(sf::RenderWindow &window, Wall wall);
+	void slide(float* deltatime);
+	float getSpeed() const
 	{
 		return m_speed;
 	}
+	sf::Vector2f getPosition() const
+	{
+		return m_position;
+	}
+
 private:
 	float m_speed;
+	sf::RectangleShape m_shape;
+	sf::Vector2f m_size;
 	sf::Vector2f m_position;
+	sf::Color m_color;
 };
