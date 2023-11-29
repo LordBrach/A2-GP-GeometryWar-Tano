@@ -55,13 +55,7 @@ int main()
 		//std::cout << 1.f / deltaTime << " FPS" << std::endl;
 
 		// Logique
-<<<<<<< Updated upstream
-		Position pos{};
-=======
 
-
-
->>>>>>> Stashed changes
 		// Affichage
 
 		// Remise au noir de toute la fenêtre
@@ -69,7 +63,6 @@ int main()
 
 		// Tout le rendu va se dérouler ici
 
-		mur.draw(window, pos);
 
 		//window.draw(rectangle);
 		window.draw(player);
