@@ -4,6 +4,7 @@
 #include <iostream>
 #include <array>
 #include <vector>
+#include "Wall.h"
 
 class WallHandler
 {
@@ -20,6 +21,8 @@ public:
 	void SpawnWalls();
 	// restart WallHandler Clock and checks if the delay is reached
 	void CheckClock();
+	// Draw walls contained in array
+	void DrawWalls(sf::RenderWindow&window);
 private:
 	// is WallSpawning active ?
 	bool isWallSpawning = true;
@@ -29,10 +32,15 @@ private:
 	int _currentWall = 0;
 	// Leveldata, contains every pattern of walls in arrays of bools, true means a wall is to be spawned
 	std::vector<std::array<bool, 5>> _vectorWallPatterns;
+	std::vector < std::array<Wall*, 5>> _arrayWalls;
 	// Values for time handling
 	sf::Clock _clock;
 	float _timeElapsed = 0;
 	// Delay between wall spawns
 	float _spawnDelay;
+
+	// Wall values
+	float _wallSpeed = 500;
+	int _wallSize = 256;
 
 };

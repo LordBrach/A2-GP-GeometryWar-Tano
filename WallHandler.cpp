@@ -73,6 +73,26 @@ void WallHandler::SpawnWalls()
 	if (_currentWall < _vectorWallPatterns.size() - 1) {
 		_currentWall += 1;
 		// here do the spawning
+
+		// want to access first element in _vectorWallPatterns
+		// want to create 5 walls based on the bools in there
+		// these walls are stored in _arrayWalls
+		for (int i = 0; i < _vectorWallPatterns.begin()[0].size(); i++)
+		{
+			if (_vectorWallPatterns.begin()[0][i] == true) {
+				_arrayWalls[_currentWall][i] = new Wall(_wallSpeed);
+			}
+		}
+		// pop first element in _vectorWallPatterns
+		_vectorWallPatterns.erase(_vectorWallPatterns.begin());
+		// TODO make it so that the new walls stored in _arrayWalls disappear after 5 seconds
+
+
+		// you need to handle the drawing of walls, they move by themselves though
+
+
+
+
 	}
 	else {
 		std::cout << "REACHED END" << std::endl;
@@ -83,7 +103,6 @@ void WallHandler::SpawnWalls()
 void WallHandler::CheckClock()
 {
 	float deltaTime = this->_clock.getElapsedTime().asSeconds();
-	//std::cout << _timeElapsed << " time" << std::endl;
 
 	_clock.restart();
 	if (isWallSpawning) {
@@ -92,5 +111,16 @@ void WallHandler::CheckClock()
 	if (_timeElapsed > this->_spawnDelay) {
 		this->SpawnWalls();
 		_timeElapsed = 0;
+	}
+}
+
+void WallHandler::DrawWalls(sf::RenderWindow &window)
+{
+	for (int i = 0; i < _arrayWalls.size(); i++)
+	{
+		for (int j = 0; i < _arrayWalls[i].size(); j++)
+		{
+			//_arrayWalls[i][j]->draw(window, _arrayWalls[i][j]);
+		}
 	}
 }
