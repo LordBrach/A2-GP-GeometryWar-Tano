@@ -1,7 +1,6 @@
 #include "Player.h"
 #include <SFML/Window.hpp>
 
-
 void Player::Draw(sf::RenderWindow& window)
 {
 	
@@ -9,44 +8,35 @@ void Player::Draw(sf::RenderWindow& window)
 	
 }
 
-sf::RectangleShape Player::CreatePlayer(sf::RectangleShape Player)
+sf::RectangleShape Player::CreatePlayer(sf::RectangleShape player)
 {
-	Player.setPosition(300, 540 - 64);;
-	Player.setSize(sf::Vector2f(128, 128));
-	Player.setFillColor(sf::Color::Yellow);
-	return Player;
+	player.setPosition(300, 540 - 64);;
+	player.setSize(sf::Vector2f(128, 128));
+	player.setFillColor(sf::Color::Yellow);
+	return player;
 }
 
-/*sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player, std::string orientation, int& index)
+sf::RectangleShape Player::PositionPlayer(sf::RectangleShape player, sf::Event inputEvent)
 {
-	
-	std::vector<sf::Vector2f> listVecteur;
-	listVecteur.push_back(sf::Vector2f(300.0f, 180.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 360.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 540.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 720.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 900.0f - 64));
-	if (orientation == "Top" && index>0) 
+	if (inputEvent.key.code == sf::Keyboard::A) 
 	{
-		index--;
+		player.setPosition(sf::Vector2f(300.0f, 180.0f - 64));
 	}
-	else if (orientation == "Down" && index < 4)
+	else if (inputEvent.key.code == sf::Keyboard::Z) 
 	{
-		index++;
+		player.setPosition(sf::Vector2f(300.0f, 360.0f - 64));
 	}
-	Player.setPosition(listVecteur[index]);
-	return Player;
-}
-*/
-sf::RectangleShape Player::PositionPlayer(sf::RectangleShape Player, int index)
-{
-
-	std::vector<sf::Vector2f> listVecteur;
-	listVecteur.push_back(sf::Vector2f(300.0f, 180.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 360.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 540.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 720.0f - 64));
-	listVecteur.push_back(sf::Vector2f(300.0f, 900.0f - 64));
-	Player.setPosition(listVecteur[index]);
-	return Player;
+	else if (inputEvent.key.code == sf::Keyboard::E)
+	{
+		player.setPosition(sf::Vector2f(300.0f, 540.0f - 64));
+	}
+	else if (inputEvent.key.code == sf::Keyboard::R)
+	{
+		player.setPosition(sf::Vector2f(300.0f, 720.0f - 64));
+	}
+	else if (inputEvent.key.code == sf::Keyboard::Space)
+	{
+		player.setPosition(sf::Vector2f(300.0f, 900.0f - 64));
+	}
+	return player;
 }

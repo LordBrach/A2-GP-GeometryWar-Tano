@@ -1,20 +1,32 @@
 #include "Wall.h"
 
-Wall::Wall(float speed)
+
+Wall::Wall(float speed, Position position)
 {
 	m_speed = speed;
+	m_color = sf::Color::Blue;
+	m_size = sf::Vector2f(128, 128);
+	m_position = setPosition(position);
+	setParameter();
 }
 
-
-sf::RectangleShape Wall::create(sf::Vector2f vec)
+Wall::Wall(Position slot, float speed, int size)
 {
-	m_position = vec;
-	sf::RectangleShape rectangle;
-	rectangle.setFillColor(sf::Color::Blue);
-	rectangle.setPosition(m_position);
-	rectangle.setSize(sf::Vector2f(256,256));
-	return rectangle;
+	m_size = sf::Vector2f(size, size);
+	m_speed = speed;
+	m_position = setPosition(slot);
+	m_color = sf::Color::Red;
+	setParameter();
 }
+
+void Wall::setParameter()
+{
+	m_shape.setSize(m_size);
+	m_shape.setPosition(m_position);
+	m_shape.setFillColor(m_color);
+}
+
+
 
 sf::Vector2f Wall::setPosition(Position pos)
 {
@@ -42,8 +54,15 @@ sf::Vector2f Wall::setPosition(Position pos)
 	return base.base1;
 }
 
-void Wall::draw(sf::RenderWindow& window,Position pos)
+void Wall::draw(sf::RenderWindow& window, Wall wall)
 {
-	window.draw(create(setPosition(pos)));
+	window.draw(wall.m_shape);
+}
+
+void Wall::slide(float* deltatime)
+{
+	m_position.x = m_position.x - m_speed * (*deltatime);
+	m_shape.setPosition(m_position);
+
 }
 
