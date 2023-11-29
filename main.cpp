@@ -9,12 +9,12 @@
 
 int main()
 {
-	//Initialisation
+	// Initialisation
 	//testing wall handler
 	WallHandler* wallHandlingLevel0 = new WallHandler(3.0f, ("../LevelData/Level1.txt"));
 	std::cout << "RESET" << std::endl;
 	wallHandlingLevel0->Reset(0.5f, ("../LevelData/Level0.txt"));
-	Position position;
+
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	window.setVerticalSyncEnabled(true);
 	Base base;
@@ -22,8 +22,8 @@ int main()
 	sf::RectangleShape Player;
 	Player = joueur.CreatePlayer(Player);
 	int index = 2;
-	sf::Vector2f pos = Player.getPosition();
 	// Début de la boucle de jeu
+	//sf::RectangleShape rectangle;
 	Wall mur(500.f);
 	const float cubeSpeed = mur.GetSpeed();
 	sf::Clock frameClock;
@@ -41,6 +41,17 @@ int main()
 				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
 				window.close();
 				break;
+				/*case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Z)
+					{
+						Player = joueur.PositionPlayer(Player,"Top",index);
+					}
+					else if (event.key.code == sf::Keyboard::S)
+					{
+						Player = joueur.PositionPlayer(Player,"Down",index);
+					}
+					break;
+				*/
 			case sf::Event::KeyPressed:
 				if (event.key.code == sf::Keyboard::A)
 				{
@@ -64,6 +75,8 @@ int main()
 				}
 				break;
 				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+				window.close();
+				break;
 			default:
 				break;
 			}
@@ -75,7 +88,7 @@ int main()
 		// Logique
 
 
-		pos.x = pos.x - deltaTime * cubeSpeed;
+		//pos.x = pos.x - deltaTime * cubeSpeed;
 
 
 		//rectangle.setPosition(pos);
@@ -95,12 +108,9 @@ int main()
 
 		// Tout le rendu va se dérouler ici
 
-		mur.draw(window,Position::position1);
-		mur.draw(window,Position::position2);
-		mur.draw(window,Position::position3);
-		mur.draw(window,Position::position4);
-		mur.draw(window,Position::position5);
+		mur.draw(window);
 
+		//window.draw(rectangle);
 		window.draw(Player);
 
 		// On présente la fenêtre sur l'écran
