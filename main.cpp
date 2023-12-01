@@ -12,7 +12,7 @@ int main()
 	// Initialisation
 	//testing wall handler
 	WallHandler* wallHandlingLevel0 = new WallHandler(3.0f, ("../LevelData/Level1.txt"));
-	std::cout << "RESET" << std::endl;
+	//std::cout << "RESET" << std::endl;
 	wallHandlingLevel0->Reset(0.5f, ("../LevelData/Level2.txt"));
 
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
@@ -58,7 +58,7 @@ int main()
 		wallHandlingLevel0->CheckClock();
 		float deltaTime = frameClock.restart().asSeconds();
 		window.clear();
-		wallHandlingLevel0->DrawWalls(window, &deltaTime);
+		wallHandlingLevel0->DrawWalls(window, &deltaTime, joueur);
 		//std::cout << 1.f / deltaTime << " FPS" << std::endl;
 
 		// Logique
@@ -83,18 +83,11 @@ int main()
 
 		// Tout le rendu va se dérouler ici
 		window.draw(joueur.getRectangle());
-		/*
-		mur1.draw(window);
-		mur2.draw(window);
-		mur3.draw(window);
-		mur.slide(&deltaTime);
-		mur1.slide(&deltaTime);
-		mur2.slide(&deltaTime);
-		mur3.slide(&deltaTime);
-		mur.draw(window); */
-		//mur.checkCollision(joueur);
-		//window.draw(rectangle);
-		
+		if (joueur.m_isAlive == false)
+		{
+			wallHandlingLevel0->DrawWalls(window, &deltaTime, joueur);
+			//joueur.m_isAlive = true;
+		}
 		// On présente la fenêtre sur l'écran
 		window.display();
 	}

@@ -64,26 +64,33 @@ void Wall::slide(float* deltatime)
 {
 	m_position.x = m_position.x - m_speed * (*deltatime);
 	m_shape.setPosition(m_position);
-	std::cout << m_position.x << ", " << m_position.y << std::endl;
+	//std::cout << m_position.x << ", " << m_position.y << std::endl;
 
 }
 
 void Wall::checkCollision(Player joueur)
 {
-	float playerX;
-	float wallX;
-	float playerY;
-	float wallY;
-	playerX = joueur.getPosition().x;
-	wallX = m_position.x;
-	playerY = joueur.getPosition().y;
-	wallY = m_position.y;
-
-
-	if (wallX <= playerX + 64 && wallX >= playerX - 64 && wallY <= playerY + 64 && wallY >= playerY - 64)
+	float playerSide = 128.f;
+	if (m_position.x <= joueur.getPosition().x + 128 && m_position.x >= joueur.getPosition().x - 128 && joueur.m_isAlive == true)
 	{
-		joueur.m_isAlive = false;
-		std::cout << "Player is dead" << std::endl;
+		float playerMaxX = joueur.getPosition().x + playerSide / 2;
+		float playerMinX = joueur.getPosition().x - playerSide / 2;
+		float playerMaxY = joueur.getPosition().y - playerSide / 2;
+		float playerMinY = joueur.getPosition().y + playerSide / 2;
+
+		float wallMaxX = m_position.x + m_size.x / 2;
+		float wallMinX = m_position.x - m_size.x / 2;
+		float wallMaxY = m_position.y - m_size.y / 2;
+		float wallMinY = m_position.y + m_size.y / 2;
+
+		if (playerMaxX >= wallMinX && playerMaxX <= wallMaxX && playerMaxY <= wallMinY && playerMaxY >= wallMaxY)
+		{
+			std::cout << "hello" << std::endl;
+			joueur.m_isAlive = false;
+		}
+
 	}
+
+
 }
 
