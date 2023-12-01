@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
 #include "Wall.h"
 #include <iostream>
@@ -19,17 +20,14 @@ int main()
 	window.setVerticalSyncEnabled(true);
 	Base base;
 	Player joueur;
+	sf::Music music;
+	if (!music.openFromFile("../LevelData/musicLVL1.mp3"))
+		std::cout << "music failed" << std::endl;
+
+	music.play();
 	int index = 2;
+
 	// Début de la boucle de jeu
-	//sf::RectangleShape rectangle;
-	/*Wall mur(500.f, Position::position1);
-	Wall mur1(500.f, Position::position2);
-	Wall mur2(500.f, Position::position3);
-	Wall mur3(Position::position4, 500.0f, 256);
-	const float cubeSpeed = mur.getSpeed();*/
-	// Début de la boucle de jeu
-	//sf::RectangleShape rectangle;
-	//const float cubeSpeed = mur.GetSpeed();
 	sf::Clock frameClock;
 
 	while (window.isOpen())
@@ -62,26 +60,8 @@ int main()
 		//std::cout << 1.f / deltaTime << " FPS" << std::endl;
 
 		// Logique
-
-		//sf::Vector2f pos = mur.getPosition();
-		//pos.x = pos.x - deltaTime * cubeSpeed;
-
-
-		//rectangle.setPosition(pos);
-
-
-		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-			pos.y = pos.y - deltaTime * cubeSpeed;
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			pos.y = pos.y + deltaTime * cubeSpeed;
-
-		rectangle.setPosition(pos); */
-		// Affichage
 		
-		// Remise au noir de toute la fenêtre
 
-		// Tout le rendu va se dérouler ici
 		window.draw(joueur.getRectangle());
 		if (joueur.m_isAlive == false)
 		{
