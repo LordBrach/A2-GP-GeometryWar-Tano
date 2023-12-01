@@ -8,31 +8,37 @@ LevelHandler::LevelHandler()
 	//TODO, if there is time, instead of doing it by hand make it so that
 	// you check every files in "Levels" and put them in the vector dynamically
 
-	this->levelNames.push_back("Level0");
-	this->levelNames.push_back("Level1");
+	this->levelPaths.push_back("../LevelData/Level0.txt");
+	this->levelPaths.push_back("../LevelData/Level1.txt");
+	// Prepare first level
+	this->wallHandlerGeneric = new WallHandler(3.0f, this->levelPaths[_CurrentLevel]);
 }
 
 LevelHandler::~LevelHandler()
 {
-	this->levelNames.clear();
+	this->levelPaths.clear();
 }
 bool LevelHandler::CheckIfReachedEnd()
 {
-	if (this->_CurrentLevel = levelNames.size() - 1)
+	if (this->_CurrentLevel = levelPaths.size() - 1)
 	{
 		return true;
 	}
 	return false;
 }
-void LevelHandler::LoadLevel()
+void LevelHandler::LoadLevel(bool isGameOver)
 {
+	if (!isGameOver) {
+		_CurrentLevel += 1;
+	}
+	this->wallHandlerGeneric->Reset(3.0f, this->levelPaths[_CurrentLevel]);
+
 	// TODO
 }
-void LevelHandler::LoadMenu()
-{
-	// TODO
-}
+void LevelHandler::LoadMenu() {}// TODO, secondary
 void LevelHandler::UnloadLevel()
 {
 	// TODO	
+	// Empty WallHandler
+	//delete(this->wallHandlerGeneric.)
 }
