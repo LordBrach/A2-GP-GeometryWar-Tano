@@ -18,9 +18,9 @@ void WallHandler::PrintWallArray()
 	{
 		for(int j = 0; j < 5; j++)
 		{
-			std::cout << _vectorWallPatterns[i][j];
+			//std::cout << _vectorWallPatterns[i][j];
 		}
-		std::cout << std::endl;
+		//std::cout << std::endl;
 	}
 }
 std::array<bool, 5> convertLine(std::string &line)
@@ -147,7 +147,7 @@ void WallHandler::DestroyOOBWalls()
 	}
 }
 
-void WallHandler::DrawWalls(sf::RenderWindow& window, float* deltatime)
+void WallHandler::DrawWalls(sf::RenderWindow& window, float* deltatime, Player& joueur)
 {
 	for (int i = 0; i < _arrayWalls.size(); i++)
 	{
@@ -157,6 +157,7 @@ void WallHandler::DrawWalls(sf::RenderWindow& window, float* deltatime)
 			{
 				_arrayWalls[i][j]->draw(window);
 				_arrayWalls[i][j]->slide(deltatime);
+				_arrayWalls[i][j]->checkCollision(joueur);
 			}
 		}
 	}
