@@ -6,67 +6,78 @@
 #include "Player.h"
 #include "WallHandler.h"
 #include <filesystem>
+#include "LevelHandler.h"
 
+
+void initGame(sf::RenderWindow &window)
+{
+	window.setVerticalSyncEnabled(true);
+	
+	// Add other stuff here if needed
+}
+
+void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
+{
+	// Gérer les événéments survenus depuis le dernier tour de boucle
+	sf::Event event;
+	while (window.pollEvent(event))
+	{
+		// On gère l'événément
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+			window.close();
+			break;
+
+		case sf::Event::KeyPressed:
+			levelHandler.getPlayer().PositionPlayer(levelHandler.getPlayer(), event);
+			break;
+			// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+
+		default:
+			break;
+		}
+	}
+}
+
+void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, float deltaTime)
+{
+	window.clear();
+	// Player
+	window.draw(GameLevelHandler.getPlayer().getRectangle());
+	// Walls (also contains their logic, their movement and collisions)
+	GameLevelHandler.getWallHandler()->DrawWalls(window, &deltaTime, GameLevelHandler.getPlayer());
+
+}
 
 int main()
 {
 	// Initialisation
-	//testing wall handler
-	WallHandler* wallHandlingLevel0 = new WallHandler(3.0f, ("../LevelData/Level1.txt"));
-	//std::cout << "RESET" << std::endl;
-	wallHandlingLevel0->Reset(0.5f, ("../LevelData/Level2.txt"));
-
+	LevelHandler GameLevelHandler;
+	// Create and initialize window values
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
-	window.setVerticalSyncEnabled(true);
-	Base base;
-	Player joueur;
-	sf::Music music;
-	if (!music.openFromFile("../LevelData/musicLVL1.mp3"))
-		std::cout << "music failed" << std::endl;
-
-	music.play();
-	int index = 2;
-
+	float deltaTime = 0;
+	initGame(window);
+	//TEMP, i will init the level here for testing purposes before menu is done
 	// Début de la boucle de jeu
 	sf::Clock frameClock;
 
 	while (window.isOpen())
 	{
-		// Gérer les événéments survenus depuis le dernier tour de boucle
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			// On gère l'événément
-			switch (event.type)
-			{
-			case sf::Event::Closed:
-				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-				window.close();
-				break;
-	
-			case sf::Event::KeyPressed:
-				joueur.PositionPlayer(joueur, event);
-				break;
-				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-				
-			default:
-				break;
-			}
+		// Funcs for running level (not menu)
+		if (GameLevelHandler.isLevelRunning() == true)
+		{		
+			checkEvents(window, GameLevelHandler);
+			// Wall Spawning timer and logic
+			GameLevelHandler.checkPlayerState();
+			GameLevelHandler.getWallHandler()->CheckClock();
+			deltaTime = frameClock.restart().asSeconds();
+			// Draw every element, add to this function if you want other visible things
+			DrawEverything(window, GameLevelHandler, deltaTime);
 		}
-		wallHandlingLevel0->CheckClock();
-		float deltaTime = frameClock.restart().asSeconds();
-		window.clear();
-		wallHandlingLevel0->DrawWalls(window, &deltaTime, joueur);
-		//std::cout << 1.f / deltaTime << " FPS" << std::endl;
-
-		// Logique
-		
-
-		window.draw(joueur.getRectangle());
-		if (joueur.m_isAlive == false)
-		{
-			wallHandlingLevel0->DrawWalls(window, &deltaTime, joueur);
-			//joueur.m_isAlive = true;
+		else {
+			// Main menu funcs
 		}
 		// On présente la fenêtre sur l'écran
 		window.display();

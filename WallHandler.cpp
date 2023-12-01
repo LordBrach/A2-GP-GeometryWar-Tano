@@ -116,6 +116,7 @@ void WallHandler::CheckClock()
 	if (isWallSpawning) {
 		_timeElapsed += deltaTime;
 	}
+	//std::cout << _timeElapsed << std::endl;
 	if (_timeElapsed > this->_spawnDelay) {
 		this->SpawnWalls();
 		_timeElapsed = 0;

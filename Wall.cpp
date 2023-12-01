@@ -1,6 +1,5 @@
 #include "Wall.h"
 
-
 Wall::Wall(float speed, Position position)
 {
 	m_speed = speed;
@@ -87,10 +86,8 @@ void Wall::checkCollision(Player joueur)
 		{
 			std::cout << "hello" << std::endl;
 			joueur.m_isAlive = false;
+			//levelHandler.LoadLevel(true);
 		}
-
 	}
-
-
 }
 

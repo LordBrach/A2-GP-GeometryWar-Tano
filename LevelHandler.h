@@ -6,6 +6,7 @@
 #include <array>
 #include <vector>
 #include <string>
+#include "Player.h"
 #include "WallHandler.h"
 
 
@@ -28,9 +29,17 @@ public:
 	// Check if we have reached the end of the levels list
 	bool CheckIfReachedEnd();
 
+	PlayState getGameState();
+	bool isLevelRunning();
+
+	WallHandler *getWallHandler();
+	Player &getPlayer();
+	void checkPlayerState();
+
 private:
 	int _CurrentLevel = 0;
 	WallHandler *wallHandlerGeneric;
+	Player joueur;
 	PlayState state;
 
 	std::vector<std::string> levelPaths;
