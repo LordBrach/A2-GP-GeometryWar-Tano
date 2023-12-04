@@ -12,6 +12,7 @@ public:
 	sf::RectangleShape getRectangle() const { return m_shape; }
 	sf::Vector2f getPosition() const { return m_position; }
 	void setPosition(sf::Vector2f newPos);
+	std::vector<sf::Text>& inputPlayer();
 	bool m_isAlive;
 
 	void changePlayerColor(sf::Color);
