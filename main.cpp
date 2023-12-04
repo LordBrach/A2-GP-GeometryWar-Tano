@@ -31,7 +31,7 @@ void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
 			break;
 
 		case sf::Event::KeyPressed:
-			levelHandler.getPlayer().PositionPlayer(levelHandler.getPlayer(), event);
+			levelHandler.getPlayer().PositionPlayer(event);
 			break;
 			// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
 
@@ -70,7 +70,7 @@ int main()
 		{		
 			checkEvents(window, GameLevelHandler);
 			// Wall Spawning timer and logic
-			GameLevelHandler.checkPlayerState();
+			GameLevelHandler.checkPlayerState(window);
 			GameLevelHandler.getWallHandler()->CheckClock();
 			deltaTime = frameClock.restart().asSeconds();
 			// Draw every element, add to this function if you want other visible things

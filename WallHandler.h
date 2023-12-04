@@ -25,6 +25,10 @@ public:
 	void DrawWalls(sf::RenderWindow&window, float* deltatime, Player& joueur);
 	// Destroy Walls
 	void DestroyOOBWalls();
+	// return value
+	bool getEndCheck();
+	// Color
+	void SetWallColor(sf::Color);
 private:
 	// is WallSpawning active ?
 	bool isWallSpawning = true;
@@ -40,9 +44,13 @@ private:
 	float _timeElapsed = 0;
 	// Delay between wall spawns
 	float _spawnDelay;
+	// Win check for levelHandler
+	bool hasReachedEnd = false;
 
 	// Wall values
-	float _wallSpeed = 500;
-	int _wallSize = 256;
+	const float _wallSpeed = 500;
+	const int _wallSize = 256;
+	// Wall color 
+	sf::Color _wallColor = sf::Color::Red;
 
 };

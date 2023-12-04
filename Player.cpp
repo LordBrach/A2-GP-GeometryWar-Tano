@@ -1,20 +1,20 @@
 #include "Player.h"
 #include <SFML/Window.hpp>
 
-Player::Player() 
+Player::Player()
 {
 	m_isAlive = true;
 	m_color = sf::Color::Yellow;
 	m_shape.setFillColor(m_color);
 	m_size = sf::Vector2f(128, 128);
 	m_shape.setSize(m_size);
-	m_position = sf::Vector2f(300, 540 - 64);
+	m_position = sf::Vector2f(300.0f, 1080.f * 0.45f);
 	m_shape.setPosition(m_position);
 
 }
 
 
-sf::Vector2f Player::PositionPlayer(Player player, sf::Event inputEvent)
+sf::Vector2f Player::PositionPlayer(sf::Event inputEvent)
 {
 	if (inputEvent.key.code == sf::Keyboard::A) 
 	{
@@ -40,4 +40,13 @@ sf::Vector2f Player::PositionPlayer(Player player, sf::Event inputEvent)
 	return m_position;
 }
 
+void Player::setPosition(sf::Vector2f newPos)
+{
+	m_shape.setPosition(newPos);
+}
 
+
+void Player::changePlayerColor(sf::Color newColor)
+{
+	m_shape.setFillColor(newColor);
+}

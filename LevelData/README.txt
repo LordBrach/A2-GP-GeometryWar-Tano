@@ -27,5 +27,11 @@ ooxxx
 xoxxx
 ooooo
 ooooo
+ooooo
+ooooo
+ooooo
+ooooo
+
+also always add a few rows of ooooo and one oooox at the end so that the level doesnt get cut short in the middle of a pattern
 
 have fun !
