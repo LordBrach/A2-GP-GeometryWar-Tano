@@ -11,6 +11,7 @@ public:
 	sf::Vector2f PositionPlayer(sf::Event inputEvent);
 	sf::RectangleShape getRectangle() const { return m_shape; }
 	sf::Vector2f getPosition() const { return m_position; }
+	sf::Color getColor() const { return m_color; }
 	void setPosition(sf::Vector2f newPos);
 	bool m_isAlive;
 

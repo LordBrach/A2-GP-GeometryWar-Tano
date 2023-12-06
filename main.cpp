@@ -7,6 +7,7 @@
 #include "WallHandler.h"
 #include <filesystem>
 #include "LevelHandler.h"
+#include "ParticleSystem.h"
 
 
 void initGame(sf::RenderWindow &window)
@@ -43,8 +44,11 @@ void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
 
 void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, float deltaTime)
 {
+	ParticleSystem particleSystem;
+	particleSystem.update(0.016f, GameLevelHandler.getPlayer());
 	window.clear();
 	// Player
+	particleSystem.draw(window);
 	window.draw(GameLevelHandler.getPlayer().getRectangle());
 	// Walls (also contains their logic, their movement and collisions)
 	GameLevelHandler.getWallHandler()->DrawWalls(window, &deltaTime, GameLevelHandler.getPlayer());
