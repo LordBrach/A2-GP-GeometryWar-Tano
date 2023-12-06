@@ -7,7 +7,12 @@
 #include "Player.h"
 #include "WallHandler.h"
 #include <filesystem>
+<<<<<<< Updated upstream
 
+=======
+#include "LevelHandler.h"
+#include "ParticleSystem.h"
+>>>>>>> Stashed changes
 
 int main()
 {
@@ -22,6 +27,7 @@ int main()
 	wallHandlingLevel0->Reset(0.5f, ("../LevelData/Level2.txt"));
 
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
+<<<<<<< Updated upstream
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
 	ParticleSystem particleSystem;
@@ -34,6 +40,12 @@ int main()
 	music.play();
 	int index = 2;
 
+=======
+	ParticleSystem particleSystem;
+	float deltaTime = 0;
+	initGame(window);
+	//TEMP, i will init the level here for testing purposes before menu is done
+>>>>>>> Stashed changes
 	// Début de la boucle de jeu
 	sf::Clock frameClock;
 
