@@ -18,6 +18,32 @@ void initGame(sf::RenderWindow &window)
 	// Add other stuff here if needed
 }
 
+sf::Text A, Z, E, R, V;
+sf::Font font;
+std::vector<sf::Text> listText = { A, Z, E, R, V };
+
+void InitializeInputText()
+{
+	sf::Text Letter;
+	float Heigh = 0;
+
+	font.loadFromFile("../Font/Arial.ttf");
+	std::vector<std::string> listString = { "A", "Z", "E", "R", "V" };
+	for (int i = 0; i < 5; i++)
+	{
+		listText[i].setCharacterSize(100);
+		listText[i].setFont(font);
+		listText[i].setString(listString[i]);
+		listText[i].setPosition(100.0f, 1080.f * (0.05f + Heigh));
+		Heigh = Heigh + 0.2;
+	}
+}
+
+sf::Text& inputPlayer(int i)
+{
+	return listText[i];
+}
+
 void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
 {
 	// Gérer les événéments survenus depuis le dernier tour de boucle
@@ -59,6 +85,7 @@ void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, fl
 	window.clear();
 	// Player
 	window.draw(GameLevelHandler.getPlayer().getRectangle());
+	for (int i = 0; i < 5; i++) { window.draw(inputPlayer(i)); }
 	// Walls (also contains their logic, their movement and collisions)
 	GameLevelHandler.getWallHandler()->DrawWalls(window, &deltaTime, GameLevelHandler.getPlayer());
 	// Particles
@@ -76,17 +103,19 @@ void DrawMenu(sf::RenderWindow &window, MainMenu &MainMenuHandler, bool hasPlaye
 	}
 	// ui drawing
 	window.draw(MainMenuHandler.GetUIText());
-	if (hasPlayerWon)
+	if (hasPlayerWon) {
+
 		window.draw(MainMenuHandler.GetVictoryStar());
+	}
 }
 
 int main()
 {
+	InitializeInputText();
 	// Initialisation
 	LevelHandler GameLevelHandler;
 	MainMenu MainMenuHandler;
 	ParticleSystem particleSys;
-
 	// Create and initialize window values
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	float deltaTime = 0;
