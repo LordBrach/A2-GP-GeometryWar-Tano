@@ -4,7 +4,7 @@
 Player::Player() 
 {
 	m_isAlive = true;
-	m_color = sf::Color::Yellow;
+	m_color = sf::Color::Blue;
 	m_shape.setFillColor(m_color);
 	m_size = sf::Vector2f(128, 128);
 	m_shape.setSize(m_size);
@@ -36,6 +36,8 @@ sf::Vector2f Player::PositionPlayer(Player player, sf::Event inputEvent)
 	{
 		m_position = sf::Vector2f(300.0f, 1080.f * 0.85f);
 	}
+	
+	
 	m_shape.setPosition(m_position);
 	return m_position;
 }
