@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
@@ -45,10 +44,6 @@ private:
 	Player joueur;
 	PlayState state;
 
-	sf::Clock _levelEndClock;
-	float _elapsedTime;
-	float _endDelay = 4.0f;
-	bool _clockStarted = false;
 	// Colors
 	int currentColor = 0;
 	std::tuple<sf::Color, sf::Color> _colorScheme;

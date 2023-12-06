@@ -7,6 +7,7 @@
 #include "WallHandler.h"
 #include <filesystem>
 #include "LevelHandler.h"
+#include "MainMenu.h"
 
 
 void initGame(sf::RenderWindow &window)
@@ -31,7 +32,13 @@ void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
 			break;
 
 		case sf::Event::KeyPressed:
-			levelHandler.getPlayer().PositionPlayer(event);
+			if (levelHandler.isLevelRunning() == true) {
+				// Key presses relating to the running portion of the game
+				levelHandler.getPlayer().PositionPlayer(event);
+			}
+			else {
+				// Key presses relating to the main menu
+			}
 			break;
 			// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
 
@@ -51,10 +58,23 @@ void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, fl
 
 }
 
+void DrawMenu(sf::RenderWindow &window, MainMenu &MainMenuHandler)
+{
+
+	// title drawing
+	for (int i = 0; i < MainMenuHandler.GetTitle().size(); i++)
+	{
+		window.draw(MainMenuHandler.GetTitle()[i]);
+	}
+	// ui drawing
+	window.draw(MainMenuHandler.GetUIText());
+}
+
 int main()
 {
 	// Initialisation
 	LevelHandler GameLevelHandler;
+	MainMenu MainMenuHandler;
 	// Create and initialize window values
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	float deltaTime = 0;
@@ -65,10 +85,10 @@ int main()
 
 	while (window.isOpen())
 	{
+		checkEvents(window, GameLevelHandler);
 		// Funcs for running level (not menu)
 		if (GameLevelHandler.isLevelRunning() == true)
 		{		
-			checkEvents(window, GameLevelHandler);
 			// Wall Spawning timer and logic
 			GameLevelHandler.checkPlayerState(window);
 			GameLevelHandler.getWallHandler()->CheckClock();
@@ -78,6 +98,8 @@ int main()
 		}
 		else {
 			// Main menu funcs
+			MainMenuHandler.CheckClock();
+			DrawMenu(window, MainMenuHandler);
 		}
 		// On présente la fenêtre sur l'écran
 		window.display();

@@ -5,7 +5,7 @@
 
 LevelHandler::LevelHandler()
 {
-	this->state = PlayState::Running;
+	state = PlayState::Title;
 	//TODO, if there is time, instead of doing it by hand make it so that
 	// you check every files in "Levels" and put them in the vector dynamically
 
