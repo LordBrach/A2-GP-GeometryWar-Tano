@@ -50,5 +50,6 @@ void Player::setPosition(sf::Vector2f newPos)
 
 void Player::changePlayerColor(sf::Color newColor)
 {
-	m_shape.setFillColor(newColor);
+	m_color = newColor;
+	m_shape.setFillColor(m_color);
 }
