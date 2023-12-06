@@ -28,7 +28,7 @@ class Wall
 {
 public:
 	Wall(float speed, Position position);
-	Wall(Position slot, float speed, int size);
+	Wall(Position slot, float speed, int size, sf::Color color);
 	void setParameter();
 	void setPosition(Position pos);
 	void draw(sf::RenderWindow &window);
@@ -41,7 +41,7 @@ public:
 	{
 		return m_position;
 	}
-	void checkCollision(Player joueur);
+	void checkCollision(Player &joueur);
 
 private:
 	float m_speed;

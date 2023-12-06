@@ -1,6 +1,5 @@
 #include "Wall.h"
 
-
 Wall::Wall(float speed, Position position)
 {
 	m_speed = speed;
@@ -10,12 +9,12 @@ Wall::Wall(float speed, Position position)
 	setParameter();
 }
 
-Wall::Wall(Position slot, float speed, int size)
+Wall::Wall(Position slot, float speed, int size, sf::Color color)
 {
 	m_size = sf::Vector2f(size, size);
 	m_speed = speed;
 	setPosition(slot);
-	m_color = sf::Color::Red;
+	m_color = color;
 	setParameter();
 }
 
@@ -68,7 +67,7 @@ void Wall::slide(float* deltatime)
 
 }
 
-void Wall::checkCollision(Player joueur)
+void Wall::checkCollision(Player &joueur)
 {
 	float playerSide = 128.f;
 	if (m_position.x <= joueur.getPosition().x + 128 && m_position.x >= joueur.getPosition().x - 128 && joueur.m_isAlive == true)
@@ -85,12 +84,11 @@ void Wall::checkCollision(Player joueur)
 
 		if (playerMaxX >= wallMinX && playerMaxX <= wallMaxX && playerMaxY <= wallMinY && playerMaxY >= wallMaxY)
 		{
-			std::cout << "hello" << std::endl;
+			//std::cout << "hello" << std::endl;
 			joueur.m_isAlive = false;
+			//std::cout << "Should change: " << joueur.m_isAlive << std::endl;
+			//levelHandler.LoadLevel(true);
 		}
-
 	}
-
-
 }
 

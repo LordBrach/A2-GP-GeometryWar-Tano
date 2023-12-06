@@ -1,6 +1,7 @@
 #include "WallHandler.h"
 #include <iostream>
 #include <fstream>
+#include<windows.h>
 
 WallHandler::WallHandler(float spawnDelay, std::string levelFilePath)
 {
@@ -18,9 +19,9 @@ void WallHandler::PrintWallArray()
 	{
 		for(int j = 0; j < 5; j++)
 		{
-			//std::cout << _vectorWallPatterns[i][j];
+			std::cout << _vectorWallPatterns[i][j];
 		}
-		//std::cout << std::endl;
+		std::cout << std::endl;
 	}
 }
 std::array<bool, 5> convertLine(std::string &line)
@@ -58,13 +59,25 @@ void WallHandler::ParseLvlData()
 	PrintWallArray();
 }	
 
+void emptyWallsArray(std::vector < std::array<Wall*, 5>> &_arrayWalls)
+{	
+	_arrayWalls.clear();
+}
+
 void WallHandler::Reset(float newDelay, std::string newLevelFilePath)
 {
 	this->_spawnDelay = newDelay;
 	this->_currentWall = 0;
 	this->_vectorWallPatterns.clear();
-	this->_levelFilePath = newLevelFilePath;
-	this->isWallSpawning = true;
+	// TODO DELETE WALLS
+	_arrayWalls.clear();
+	//emptyWallsArray(_arrayWalls);
+	_levelFilePath = newLevelFilePath;
+	isWallSpawning = true;
+	_clock.restart();
+	_timeElapsed = 0;
+	hasReachedEnd = false;
+
 	ParseLvlData();
 }
 
@@ -86,7 +99,7 @@ void WallHandler::SpawnWalls()
 				//std::cout << "instanciating a wall in position: " << positions->x << std::endl;
 
 				// store new wall in _arrayWalls
-				_arrayWalls[_currentWall][i] = new Wall(positions, _wallSpeed, _wallSize);
+				_arrayWalls[_currentWall][i] = new Wall(positions, _wallSpeed, _wallSize, _wallColor);
 				_arrayWalls[_currentWall][i]->setPosition(positions);
 
 				std::cout << "added wall to array" << std::endl;
@@ -96,15 +109,10 @@ void WallHandler::SpawnWalls()
 
 			}
 		}
-		// TODO make it so that the new walls stored in _arrayWalls disappear after 5 seconds
-
-
-		// you need to handle the drawing of walls, they move by themselves though
-
 		_currentWall += 1;
 	} else {
 		std::cout << "REACHED END" << std::endl;
-		this->isWallSpawning = false;
+		hasReachedEnd = true;
 	}
 }
 
@@ -116,6 +124,7 @@ void WallHandler::CheckClock()
 	if (isWallSpawning) {
 		_timeElapsed += deltaTime;
 	}
+	//std::cout << _timeElapsed << std::endl;
 	if (_timeElapsed > this->_spawnDelay) {
 		this->SpawnWalls();
 		_timeElapsed = 0;
@@ -162,4 +171,14 @@ void WallHandler::DrawWalls(sf::RenderWindow& window, float* deltatime, Player& 
 		}
 	}
 	DestroyOOBWalls();
+}
+
+bool WallHandler::getEndCheck()
+{
+	return hasReachedEnd;
+}
+
+void WallHandler::SetWallColor(sf::Color color)
+{
+	_wallColor = color;
 }

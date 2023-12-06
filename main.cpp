@@ -1,95 +1,83 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
-#include "ParticleSystem.h"
 #include "Wall.h"
 #include <iostream>
 #include "Player.h"
 #include "WallHandler.h"
 #include <filesystem>
-<<<<<<< Updated upstream
-
-=======
 #include "LevelHandler.h"
-#include "ParticleSystem.h"
->>>>>>> Stashed changes
+
+
+void initGame(sf::RenderWindow &window)
+{
+	window.setVerticalSyncEnabled(true);
+	
+	// Add other stuff here if needed
+}
+
+void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
+{
+	// Gérer les événéments survenus depuis le dernier tour de boucle
+	sf::Event event;
+	while (window.pollEvent(event))
+	{
+		// On gère l'événément
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+			window.close();
+			break;
+
+		case sf::Event::KeyPressed:
+			levelHandler.getPlayer().PositionPlayer(event);
+			break;
+			// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
+
+		default:
+			break;
+		}
+	}
+}
+
+void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, float deltaTime)
+{
+	window.clear();
+	// Player
+	window.draw(GameLevelHandler.getPlayer().getRectangle());
+	// Walls (also contains their logic, their movement and collisions)
+	GameLevelHandler.getWallHandler()->DrawWalls(window, &deltaTime, GameLevelHandler.getPlayer());
+
+}
 
 int main()
 {
 	// Initialisation
-	ParticleSystem particlesystem;
-	
-	sf::CircleShape circlePart;
-
-	//testing wall handler
-	WallHandler* wallHandlingLevel0 = new WallHandler(3.0f, ("../LevelData/Level1.txt"));
-	//std::cout << "RESET" << std::endl;
-	wallHandlingLevel0->Reset(0.5f, ("../LevelData/Level2.txt"));
-
+	LevelHandler GameLevelHandler;
+	// Create and initialize window values
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
-<<<<<<< Updated upstream
-	window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(60);
-	ParticleSystem particleSystem;
-	Base base;
-	Player joueur;
-	sf::Music music;
-	if (!music.openFromFile("../LevelData/musicLVL1.mp3"))
-		std::cout << "music failed" << std::endl;
-
-	music.play();
-	int index = 2;
-
-=======
-	ParticleSystem particleSystem;
 	float deltaTime = 0;
 	initGame(window);
 	//TEMP, i will init the level here for testing purposes before menu is done
->>>>>>> Stashed changes
 	// Début de la boucle de jeu
 	sf::Clock frameClock;
 
 	while (window.isOpen())
 	{
-		// Gérer les événéments survenus depuis le dernier tour de boucle
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			// On gère l'événément
-			switch (event.type)
-			{
-			case sf::Event::Closed:
-				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-				window.close();
-				break;
-	
-			case sf::Event::KeyPressed:
-				joueur.PositionPlayer(joueur, event);
-				break;
-				// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-			
-			default:
-				break;
-			}
+		// Funcs for running level (not menu)
+		if (GameLevelHandler.isLevelRunning() == true)
+		{		
+			checkEvents(window, GameLevelHandler);
+			// Wall Spawning timer and logic
+			GameLevelHandler.checkPlayerState(window);
+			GameLevelHandler.getWallHandler()->CheckClock();
+			deltaTime = frameClock.restart().asSeconds();
+			// Draw every element, add to this function if you want other visible things
+			DrawEverything(window, GameLevelHandler, deltaTime);
 		}
-		wallHandlingLevel0->CheckClock();
-		float dt = 0.016f;
-		particleSystem.update(dt, joueur);
-
-
-		float deltaTime = frameClock.restart().asSeconds();
-
-		window.clear();
-		wallHandlingLevel0->DrawWalls(window, &deltaTime, joueur);
-		//std::cout << 1.f / deltaTime << " FPS" << std::endl;
-		particleSystem.draw(window);
-
-		// Logique
-		window.draw(joueur.getRectangle());
-		if (joueur.m_isAlive == false)
-		{
-			wallHandlingLevel0->DrawWalls(window, &deltaTime, joueur);
-			//joueur.m_isAlive = true;
+		else {
+			// Main menu funcs
 		}
 		// On présente la fenêtre sur l'écran
 		window.display();
