@@ -8,6 +8,7 @@
 #include <filesystem>
 #include "LevelHandler.h"
 #include "MainMenu.h"
+#include "ParticleSystem.h"
 
 
 void initGame(sf::RenderWindow &window)
@@ -53,14 +54,16 @@ void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
 	}
 }
 
-void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, float deltaTime)
+void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, float deltaTime, ParticleSystem &particleSys)
 {
 	window.clear();
 	// Player
 	window.draw(GameLevelHandler.getPlayer().getRectangle());
 	// Walls (also contains their logic, their movement and collisions)
 	GameLevelHandler.getWallHandler()->DrawWalls(window, &deltaTime, GameLevelHandler.getPlayer());
-
+	// Particles
+	particleSys.update(0.016f, GameLevelHandler.getPlayer());
+	particleSys.draw(window);
 }
 
 void DrawMenu(sf::RenderWindow &window, MainMenu &MainMenuHandler, bool hasPlayerWon)
@@ -82,6 +85,8 @@ int main()
 	// Initialisation
 	LevelHandler GameLevelHandler;
 	MainMenu MainMenuHandler;
+	ParticleSystem particleSys;
+
 	// Create and initialize window values
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	float deltaTime = 0;
@@ -101,7 +106,7 @@ int main()
 			GameLevelHandler.getWallHandler()->CheckClock();
 			deltaTime = frameClock.restart().asSeconds();
 			// Draw every element, add to this function if you want other visible things
-			DrawEverything(window, GameLevelHandler, deltaTime);
+			DrawEverything(window, GameLevelHandler, deltaTime, particleSys);
 		}
 		else {
 			// Main menu funcs
