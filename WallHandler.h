@@ -17,6 +17,7 @@ public:
 	void PrintWallArray();
 	// reset values to prepare for new level
 	void Reset(float newDelay, std::string newLevelFilePath);
+	void Reset();
 	// spawn walls and iterate
 	void SpawnWalls();
 	// restart WallHandler Clock and checks if the delay is reached

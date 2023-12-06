@@ -38,6 +38,11 @@ void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
 			}
 			else {
 				// Key presses relating to the main menu
+				if (event.key.code == sf::Keyboard::Enter) {
+					// start game
+					levelHandler.setLevelRunning();
+					// destroy main menu ?
+				}
 			}
 			break;
 			// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
@@ -58,9 +63,9 @@ void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, fl
 
 }
 
-void DrawMenu(sf::RenderWindow &window, MainMenu &MainMenuHandler)
+void DrawMenu(sf::RenderWindow &window, MainMenu &MainMenuHandler, bool hasPlayerWon)
 {
-
+	window.clear();
 	// title drawing
 	for (int i = 0; i < MainMenuHandler.GetTitle().size(); i++)
 	{
@@ -68,6 +73,8 @@ void DrawMenu(sf::RenderWindow &window, MainMenu &MainMenuHandler)
 	}
 	// ui drawing
 	window.draw(MainMenuHandler.GetUIText());
+	if (hasPlayerWon)
+		window.draw(MainMenuHandler.GetVictoryStar());
 }
 
 int main()
@@ -99,7 +106,7 @@ int main()
 		else {
 			// Main menu funcs
 			MainMenuHandler.CheckClock();
-			DrawMenu(window, MainMenuHandler);
+			DrawMenu(window, MainMenuHandler, GameLevelHandler.hasPlayerWon());
 		}
 		// On présente la fenêtre sur l'écran
 		window.display();

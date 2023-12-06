@@ -31,6 +31,8 @@ MainMenu::MainMenu()
 	CreateLetter('h');
 	CreateLetter('i');
 	CreateLetter('n');
+	// extra
+	CreateStar();
 }
 
 MainMenu::~MainMenu(){}
@@ -42,6 +44,10 @@ std::vector<sf::ConvexShape> MainMenu::GetTitle()
 sf::Text MainMenu::GetUIText()
 {
 	return uiText;
+}
+sf::ConvexShape MainMenu::GetVictoryStar()
+{
+	return  victoryStar;
 }
 
 void MainMenu::CreateLetter(char which_letter)
@@ -152,4 +158,23 @@ void MainMenu::BlinkUI()
 	} else {
 		uiText.setFillColor(sf::Color::White);
 	}
+}
+
+void MainMenu::CreateStar()
+{
+	victoryStar.setFillColor(sf::Color::Yellow);
+	victoryStar.setPosition(1920.f * 0.9f, 1080.f * 0.05f);
+	victoryStar.setPointCount(8);
+	// leftmost point
+	victoryStar.setPoint(0, sf::Vector2f(0.0f, 45.0f));
+	victoryStar.setPoint(1, sf::Vector2f(15.0f, 40.0f));
+	// top point
+	victoryStar.setPoint(2, sf::Vector2f(20.0f, 5.0f));
+	victoryStar.setPoint(3, sf::Vector2f(25.0f, 40.0f));
+	// rightmost point
+	victoryStar.setPoint(4, sf::Vector2f(40.0f, 45.0f));
+	victoryStar.setPoint(5, sf::Vector2f(25.0f, 50.0f));
+	// bottom point
+	victoryStar.setPoint(6, sf::Vector2f(20.0f, 75.0f));
+	victoryStar.setPoint(7, sf::Vector2f(15.0f, 50.0f));
 }

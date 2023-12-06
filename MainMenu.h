@@ -19,8 +19,10 @@ public:
 	// UI FUNCTIONS
 	sf::Text GetUIText();
 	void BlinkUI();
+	// EXTRA
+	void CreateStar();
+	sf::ConvexShape GetVictoryStar();
 private:
-
 	// TITLE VALUES
 	float size = 1.0f;
 	int increment = 60;
@@ -30,7 +32,9 @@ private:
 	// UI
 	sf::Font uiFont;
 	sf::Text uiText;
-
+	// EXTRA
+	sf::ConvexShape victoryStar;
+	// CLOCK
 	sf::Clock _MenuClock;
 	float _timeElapsed = 0;
 	float _uiFlashDelay;

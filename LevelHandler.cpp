@@ -84,9 +84,12 @@ void LevelHandler::checkPlayerState(sf::RenderWindow& window)
 	else if (this->wallHandlerGeneric->getEndCheck()) {
 		if (this->CheckIfReachedEnd()) {
 			// Delete everything in wallHandler and level handler
-			// End screen > main menu
+			//wallHandlerGeneric->Reset();
 			// for now, quits the app
-			window.close();
+			//window.close();
+			// End screen > main menu
+			state = LevelHandler::PlayState::Title;
+			hasWon = true;
 		}
 		else {
 			changeCurrentColorScheme();
@@ -108,4 +111,14 @@ void LevelHandler::changeCurrentColorScheme()
 	_colorScheme = { colorArray[currentColor],  colorArray[currentColor+1]};
 	wallHandlerGeneric->SetWallColor(std::get<0>(_colorScheme));
 	joueur.changePlayerColor(std::get<1>(_colorScheme));
+}
+
+void LevelHandler::setLevelRunning()
+{
+	state = LevelHandler::PlayState::Running;
+}
+
+bool LevelHandler::hasPlayerWon()
+{
+	return hasWon;
 }
