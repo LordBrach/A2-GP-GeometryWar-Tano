@@ -14,6 +14,7 @@ Player::Player()
 }
 
 
+
 sf::Vector2f Player::PositionPlayer(sf::Event inputEvent)
 {
 	if (inputEvent.key.code == sf::Keyboard::A) 
