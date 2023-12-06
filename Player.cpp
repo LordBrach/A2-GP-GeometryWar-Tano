@@ -44,7 +44,8 @@ sf::Vector2f Player::PositionPlayer(sf::Event inputEvent)
 
 void Player::setPosition(sf::Vector2f newPos)
 {
-	m_shape.setPosition(newPos);
+	m_position = newPos;
+	m_shape.setPosition(m_position);
 }
 
 
