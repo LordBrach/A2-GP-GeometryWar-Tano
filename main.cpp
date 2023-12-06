@@ -16,14 +16,17 @@ void initGame(sf::RenderWindow &window)
 	// Add other stuff here if needed
 }
 
-void inputPlayer(sf::RenderWindow& window)
+
+
+sf::Text A, Z, E, R, V;
+sf::Font font;
+std::vector<sf::Text> listText = { A, Z, E, R, V };
+void InitializeInputText()
 {
 	sf::Text Letter;
 	float Heigh = 0;
-	sf::Font font;
-	sf::Text A, Z, E, R, V;
+
 	font.loadFromFile("../Font/Arial.ttf");
-	std::vector<sf::Text> listText = { A, Z, E, R, V };
 	std::vector<std::string> listString = { "A", "Z", "E", "R", "V" };
 	for (int i = 0;i < 5;i++)
 	{
@@ -33,11 +36,13 @@ void inputPlayer(sf::RenderWindow& window)
 		listText[i].setPosition(100.0f, 1080.f * (0.05f + Heigh));
 		Heigh = Heigh + 0.2;
 	}
-	for (int y = 0;y < 5;y++) 
-	{
-		window.draw(listText[y]);
-	}
 }
+
+sf::Text& inputPlayer(int i) 
+{
+	return listText[i];
+}
+
 
 void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
 {
@@ -68,14 +73,15 @@ void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, fl
 {
 	window.clear();
 	// Player
+	for (int i = 0; i < 5; i++) { window.draw(inputPlayer(i)); }
 	window.draw(GameLevelHandler.getPlayer().getRectangle());
 	// Walls (also contains their logic, their movement and collisions)
 	GameLevelHandler.getWallHandler()->DrawWalls(window, &deltaTime, GameLevelHandler.getPlayer());
-	inputPlayer(window);
 }
 
 int main()
 {
+	InitializeInputText();
 	// Initialisation
 	LevelHandler GameLevelHandler;
 	// Create and initialize window values
