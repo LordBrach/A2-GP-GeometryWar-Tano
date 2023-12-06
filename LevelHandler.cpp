@@ -8,9 +8,13 @@ LevelHandler::LevelHandler()
 	state = PlayState::Title;
 	//TODO, if there is time, instead of doing it by hand make it so that
 	// you check every files in "Levels" and put them in the vector dynamically
+	this->levelPaths.push_back("../LevelData/Debug0.txt");
+	this->levelPaths.push_back("../LevelData/Debug1.txt");
+	this->levelPaths.push_back("../LevelData/Debug2.txt");
+	this->levelPaths.push_back("../LevelData/Debug3.txt");
 
-	this->levelPaths.push_back("../LevelData/Level2.txt");
-	this->levelPaths.push_back("../LevelData/Level1.txt");
+	//this->levelPaths.push_back("../LevelData/Level2.txt");
+	//this->levelPaths.push_back("../LevelData/Level1.txt");
 	// Prepare first level
 	this->wallHandlerGeneric = new WallHandler(0.5f, this->levelPaths[_CurrentLevel]);
 }
@@ -115,6 +119,7 @@ void LevelHandler::changeCurrentColorScheme()
 
 void LevelHandler::setLevelRunning()
 {
+	_CurrentLevel = 0;
 	state = LevelHandler::PlayState::Running;
 }
 
