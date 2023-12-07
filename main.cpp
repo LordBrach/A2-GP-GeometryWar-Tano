@@ -22,7 +22,7 @@ sf::Text A, Z, E, R, V;
 sf::Font font;
 std::vector<sf::Text> listText = { A, Z, E, R, V };
 
-void InitializeInputText()
+void InitializeInputText(Player& joueur)
 {
 	sf::Text Letter;
 	float Heigh = 0;
@@ -35,6 +35,7 @@ void InitializeInputText()
 		listText[i].setFont(font);
 		listText[i].setString(listString[i]);
 		listText[i].setPosition(100.0f, 1080.f * (0.05f + Heigh));
+		listText[i].setFillColor(joueur.getColor());
 		Heigh = Heigh + 0.2;
 	}
 }
@@ -81,7 +82,8 @@ void checkEvents(sf::RenderWindow &window, LevelHandler &levelHandler)
 }
 
 void DrawEverything(sf::RenderWindow& window, LevelHandler &GameLevelHandler, float deltaTime, ParticleSystem &particleSys)
-{
+{	//KeytoPress
+	InitializeInputText(GameLevelHandler.getPlayer());
 	window.clear();
 	// Player
 	window.draw(GameLevelHandler.getPlayer().getRectangle());
@@ -111,7 +113,7 @@ void DrawMenu(sf::RenderWindow &window, MainMenu &MainMenuHandler, bool hasPlaye
 
 int main()
 {
-	InitializeInputText();
+	
 	// Initialisation
 	LevelHandler GameLevelHandler;
 	MainMenu MainMenuHandler;
