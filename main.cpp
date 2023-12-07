@@ -13,8 +13,7 @@
 
 void initGame(sf::RenderWindow &window)
 {
-	window.setVerticalSyncEnabled(true);
-	
+	window.setFramerateLimit(60);
 	// Add other stuff here if needed
 }
 
@@ -115,6 +114,12 @@ int main()
 {
 	
 	// Initialisation
+
+	int bpm = 120;
+	int bps = bpm / 60;
+
+
+	//musique fin
 	LevelHandler GameLevelHandler;
 	MainMenu MainMenuHandler;
 	ParticleSystem particleSys;
