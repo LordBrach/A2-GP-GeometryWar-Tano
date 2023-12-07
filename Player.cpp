@@ -14,6 +14,7 @@ Player::Player()
 }
 
 
+
 sf::Vector2f Player::PositionPlayer(sf::Event inputEvent)
 {
 	if (inputEvent.key.code == sf::Keyboard::A) 
@@ -44,11 +45,13 @@ sf::Vector2f Player::PositionPlayer(sf::Event inputEvent)
 
 void Player::setPosition(sf::Vector2f newPos)
 {
-	m_shape.setPosition(newPos);
+	m_position = newPos;
+	m_shape.setPosition(m_position);
 }
 
 
 void Player::changePlayerColor(sf::Color newColor)
 {
-	m_shape.setFillColor(newColor);
+	m_color = newColor;
+	m_shape.setFillColor(m_color);
 }

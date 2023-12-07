@@ -5,12 +5,16 @@
 
 LevelHandler::LevelHandler()
 {
-	this->state = PlayState::Running;
+	state = PlayState::Title;
 	//TODO, if there is time, instead of doing it by hand make it so that
 	// you check every files in "Levels" and put them in the vector dynamically
+	this->levelPaths.push_back("../LevelData/Debug0.txt");
+	this->levelPaths.push_back("../LevelData/Debug1.txt");
+	this->levelPaths.push_back("../LevelData/Debug2.txt");
+	this->levelPaths.push_back("../LevelData/Debug3.txt");
 
-	this->levelPaths.push_back("../LevelData/Level2.txt");
-	this->levelPaths.push_back("../LevelData/Level1.txt");
+	//this->levelPaths.push_back("../LevelData/Level2.txt");
+	//this->levelPaths.push_back("../LevelData/Level1.txt");
 	// Prepare first level
 	this->wallHandlerGeneric = new WallHandler(0.5f, this->levelPaths[_CurrentLevel]);
 }
@@ -84,9 +88,12 @@ void LevelHandler::checkPlayerState(sf::RenderWindow& window)
 	else if (this->wallHandlerGeneric->getEndCheck()) {
 		if (this->CheckIfReachedEnd()) {
 			// Delete everything in wallHandler and level handler
-			// End screen > main menu
+			//wallHandlerGeneric->Reset();
 			// for now, quits the app
-			window.close();
+			//window.close();
+			// End screen > main menu
+			state = LevelHandler::PlayState::Title;
+			hasWon = true;
 		}
 		else {
 			changeCurrentColorScheme();
@@ -108,4 +115,15 @@ void LevelHandler::changeCurrentColorScheme()
 	_colorScheme = { colorArray[currentColor],  colorArray[currentColor+1]};
 	wallHandlerGeneric->SetWallColor(std::get<0>(_colorScheme));
 	joueur.changePlayerColor(std::get<1>(_colorScheme));
+}
+
+void LevelHandler::setLevelRunning()
+{
+	_CurrentLevel = 0;
+	state = LevelHandler::PlayState::Running;
+}
+
+bool LevelHandler::hasPlayerWon()
+{
+	return hasWon;
 }

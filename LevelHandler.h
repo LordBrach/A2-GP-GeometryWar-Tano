@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
@@ -31,7 +30,7 @@ public:
 
 	PlayState getGameState();
 	bool isLevelRunning();
-
+	void setLevelRunning();
 	WallHandler *getWallHandler();
 	Player &getPlayer();
 	// check if player is alive or if he has reached the end of the level
@@ -39,16 +38,13 @@ public:
 
 	void changeCurrentColorScheme();
 
+	bool hasPlayerWon();
 private:
 	int _CurrentLevel = 0;
 	WallHandler *wallHandlerGeneric;
 	Player joueur;
 	PlayState state;
-
-	sf::Clock _levelEndClock;
-	float _elapsedTime;
-	float _endDelay = 4.0f;
-	bool _clockStarted = false;
+	bool hasWon = false;
 	// Colors
 	int currentColor = 0;
 	std::tuple<sf::Color, sf::Color> _colorScheme;
