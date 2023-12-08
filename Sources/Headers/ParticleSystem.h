@@ -1,6 +1,8 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Particle.h"
+#include "../../Sources/Headers/Particle.h"
+
 
 class ParticleSystem {
 public:

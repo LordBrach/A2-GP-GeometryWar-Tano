@@ -11,16 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Code\Draw.cpp" />
+    <ClCompile Include="Sources\Code\Events.cpp" />
     <ClCompile Include="Sources\Code\LevelHandler.cpp" />
     <ClCompile Include="Sources\Code\main.cpp" />
     <ClCompile Include="Sources\Code\MainMenu.cpp" />
     <ClCompile Include="Sources\Code\Particle.cpp" />
     <ClCompile Include="Sources\Code\ParticleSystem.cpp" />
     <ClCompile Include="Sources\Code\Player.cpp" />
+    <ClCompile Include="Sources\Code\UI.cpp" />
     <ClCompile Include="Sources\Code\Wall.cpp" />
     <ClCompile Include="Sources\Code\WallHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Headers\header_library.h" />
     <ClInclude Include="Sources\Headers\LevelHandler.h" />
     <ClInclude Include="Sources\Headers\MainMenu.h" />
     <ClInclude Include="Sources\Headers\Particle.h" />
