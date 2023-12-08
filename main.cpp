@@ -26,7 +26,7 @@ void InitializeInputText(Player& joueur)
 	sf::Text Letter;
 	float Heigh = 0;
 
-	font.loadFromFile("../Font/Arial.ttf");
+	font.loadFromFile("../Fonts/Arial.ttf");
 	std::vector<std::string> listString = { "A", "Z", "E", "R", "V" };
 	for (int i = 0; i < 5; i++)
 	{
