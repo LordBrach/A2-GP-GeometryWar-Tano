@@ -1,4 +1,4 @@
-#include "Particle.h"
+#include "../../Sources/Headers/Particle.h"
 Particle::Particle() {
 	shape.setSize(sf::Vector2f(10, 10));
 

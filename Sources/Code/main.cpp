@@ -1,14 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
-#include "Wall.h"
-#include <iostream>
-#include "Player.h"
-#include "WallHandler.h"
 #include <filesystem>
-#include "LevelHandler.h"
-#include "MainMenu.h"
-#include "ParticleSystem.h"
+#include <iostream>
+#include "../../Sources/Headers/Wall.h"
+#include "../../Sources/Headers/Player.h"
+#include "../../Sources/Headers/WallHandler.h"
+#include "../../Sources/Headers/LevelHandler.h"
+#include "../../Sources/Headers/MainMenu.h"
+#include "../../Sources/Headers/ParticleSystem.h"
 
 
 void initGame(sf::RenderWindow &window)

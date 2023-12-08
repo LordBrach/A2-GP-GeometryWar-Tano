@@ -1,4 +1,4 @@
-#include "Wall.h"
+#include "../../Sources/Headers/Wall.h"
 
 Wall::Wall(float speed, Position position)
 {

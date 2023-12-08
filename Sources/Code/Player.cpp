@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "../../Sources/Headers/Player.h"
 #include <SFML/Window.hpp>
 
 Player::Player()

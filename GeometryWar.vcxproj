@@ -10,6 +10,25 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Code\LevelHandler.cpp" />
+    <ClCompile Include="Sources\Code\main.cpp" />
+    <ClCompile Include="Sources\Code\MainMenu.cpp" />
+    <ClCompile Include="Sources\Code\Particle.cpp" />
+    <ClCompile Include="Sources\Code\ParticleSystem.cpp" />
+    <ClCompile Include="Sources\Code\Player.cpp" />
+    <ClCompile Include="Sources\Code\Wall.cpp" />
+    <ClCompile Include="Sources\Code\WallHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\Headers\LevelHandler.h" />
+    <ClInclude Include="Sources\Headers\MainMenu.h" />
+    <ClInclude Include="Sources\Headers\Particle.h" />
+    <ClInclude Include="Sources\Headers\ParticleSystem.h" />
+    <ClInclude Include="Sources\Headers\Player.h" />
+    <ClInclude Include="Sources\Headers\Wall.h" />
+    <ClInclude Include="Sources\Headers\WallHandler.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -85,25 +104,6 @@
       <AdditionalDependencies>sfml-audio.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="LevelHandler.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Wall.cpp" />
-    <ClCompile Include="WallHandler.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="LevelHandler.h" />
-    <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="Particle.h" />
-    <ClInclude Include="ParticleSystem.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Wall.h" />
-    <ClInclude Include="WallHandler.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
