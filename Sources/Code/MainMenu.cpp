@@ -35,7 +35,10 @@ MainMenu::MainMenu()
 	CreateStar();
 }
 
-MainMenu::~MainMenu(){}
+MainMenu::~MainMenu()
+{
+	TitleVector.clear();
+}
 
 std::vector<sf::ConvexShape> MainMenu::GetTitle()
 {

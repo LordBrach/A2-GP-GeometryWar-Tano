@@ -1,5 +1,7 @@
 #include "../../Sources/Headers/header_library.h"
-
+//#define _CRTDBG_MAP_ALLOC
+//#include <stdlib.h>
+//#include <crtdbg.h>
 
 
 void initGame(sf::RenderWindow &window)
@@ -48,4 +50,5 @@ int main()
 		// On présente la fenêtre sur l'écran
 		window.display();
 	}
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 }
