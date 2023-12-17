@@ -8,10 +8,10 @@ void DrawEverything(sf::RenderWindow& window, LevelHandler& GameLevelHandler, fl
 	window.clear();
 	// Player
 	window.draw(GameLevelHandler.getPlayer().getRectangle());
-	for (int i = 0; i < 5; i++) { window.draw(inputPlayer(i)); }
 	// Walls (also contains their logic, their movement and collisions)
 	GameLevelHandler.getWallHandler()->DrawWalls(window, &deltaTime, GameLevelHandler.getPlayer());
 	// Particles
+	for (int i = 0; i < 5; i++) { window.draw(inputPlayer(i)); }
 	particleSys.update(0.016f, GameLevelHandler.getPlayer());
 	particleSys.draw(window);
 }

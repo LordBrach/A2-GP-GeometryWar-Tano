@@ -30,8 +30,6 @@ void checkEvents(sf::RenderWindow& window, LevelHandler& levelHandler)
 				}
 			}
 			break;
-			// L'utilisateur a cliqué sur la croix => on ferme la fenêtre
-
 		default:
 			break;
 		}

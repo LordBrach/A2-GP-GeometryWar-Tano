@@ -33,7 +33,7 @@ sf::Vector2f Player::PositionPlayer(sf::Event inputEvent)
 	{
 		m_position = sf::Vector2f(300.0f, 1080.f * 0.65f);
 	}
-	else if (inputEvent.key.code == sf::Keyboard::Space)
+	else if (inputEvent.key.code == sf::Keyboard::V)
 	{
 		m_position = sf::Vector2f(300.0f, 1080.f * 0.85f);
 	}

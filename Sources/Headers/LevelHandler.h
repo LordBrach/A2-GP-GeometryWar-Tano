@@ -21,10 +21,8 @@ public:
 		Paused,
 		Restart
 	};
-	void LoadMenu();
 	// Load/Restarts level depending of if the player died
 	void LoadLevel(bool isGameOver);
-	void UnloadLevel();
 	// Check if we have reached the end of the levels list
 	bool CheckIfReachedEnd();
 

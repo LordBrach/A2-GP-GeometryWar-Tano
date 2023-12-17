@@ -1,8 +1,4 @@
 #include "../../Sources/Headers/header_library.h"
-//#define _CRTDBG_MAP_ALLOC
-//#include <stdlib.h>
-//#include <crtdbg.h>
-
 
 void initGame(sf::RenderWindow &window)
 {
@@ -20,13 +16,13 @@ int main()
 	int bpm = 120;
 	int bps = bpm / 60;
 
+	sf::Clock frameClock;
 	// Create and initialize window values
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Hiraishin");
 	float deltaTime = 0;
 	initGame(window);
 
 	// Début de la boucle de jeu
-	sf::Clock frameClock;
 
 	while (window.isOpen())
 	{
@@ -50,5 +46,4 @@ int main()
 		// On présente la fenêtre sur l'écran
 		window.display();
 	}
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 }
