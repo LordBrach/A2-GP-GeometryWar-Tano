@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <array>
 #include <vector>
@@ -35,7 +36,13 @@ public:
 	void checkPlayerState(sf::RenderWindow& window);
 
 	void changeCurrentColorScheme();
-
+	void changeCurrentMusicTheme();
+	void initMusic() {
+		for (size_t i = 0; i < musicArray.size(); ++i) {
+			sf::Music& music = musicArray[i];
+			music.openFromFile("../LevelData/music" + std::to_string(i + 1) + ".mp3");
+		}
+	}
 	bool hasPlayerWon();
 private:
 	int _CurrentLevel = 0;
@@ -45,9 +52,10 @@ private:
 	bool hasWon = false;
 	// Colors
 	int currentColor = 0;
+	int currentMusic = 0;
 	std::tuple<sf::Color, sf::Color> _colorScheme;
 	std::array<sf::Color, 4> colorArray = { sf::Color::Red, sf::Color::Blue, sf::Color::Cyan, sf::Color::Magenta };
-
-
+	std::array<sf::Music, 6> musicArray;
+	
 	std::vector<std::string> levelPaths;
 };

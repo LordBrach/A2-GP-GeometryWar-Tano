@@ -13,7 +13,8 @@ LevelHandler::LevelHandler()
 	this->levelPaths.push_back("../LevelData/Level3.txt");
 	this->levelPaths.push_back("../LevelData/Level4.txt");
 	this->levelPaths.push_back("../LevelData/Level5.txt");
-
+	this->initMusic();
+	musicArray[0].play();
 	// Prepare first level
 	this->wallHandlerGeneric = new WallHandler(0.5f, this->levelPaths[_CurrentLevel]);
 }
@@ -41,13 +42,13 @@ void LevelHandler::LoadLevel(bool isGameOver)
 	this->getPlayer().setPosition(sf::Vector2f(300.0f, 1080.f * 0.45f));
 }
 
-WallHandler *LevelHandler::getWallHandler()
+WallHandler* LevelHandler::getWallHandler()
 {
 	return this->wallHandlerGeneric;
 }
 
 
-Player &LevelHandler::getPlayer()
+Player& LevelHandler::getPlayer()
 {
 	return this->joueur;
 }
@@ -87,6 +88,7 @@ void LevelHandler::checkPlayerState(sf::RenderWindow& window)
 		}
 		else {
 			changeCurrentColorScheme();
+			changeCurrentMusicTheme();
 			LoadLevel(false);
 		}
 	}
@@ -102,9 +104,16 @@ void LevelHandler::changeCurrentColorScheme()
 	if (currentColor == colorArray.size() - 1) {
 		currentColor = 0;
 	}
-	_colorScheme = { colorArray[currentColor],  colorArray[currentColor+1]};
+	_colorScheme = { colorArray[currentColor],  colorArray[currentColor + 1] };
 	wallHandlerGeneric->SetWallColor(std::get<0>(_colorScheme));
 	joueur.changePlayerColor(std::get<1>(_colorScheme));
+}
+
+void LevelHandler::changeCurrentMusicTheme()
+{
+	currentMusic++;
+	musicArray[currentMusic - 1].stop();
+	musicArray[currentMusic].play();
 }
 
 void LevelHandler::setLevelRunning()
